@@ -12,4 +12,5 @@ dist
 
 .idea
 yarn.lock
+*.rar
 
