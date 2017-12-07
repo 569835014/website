@@ -7,7 +7,7 @@ class Article extends BaseSchema{
     const config= {
       title: String,//标题
       content: String,//内容
-      RichType: {//1为markdown,2为富文本编辑器
+      richType: {//1为markdown,2为富文本编辑器
         type: Number,
         default: 1
       },

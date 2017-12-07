@@ -15,7 +15,7 @@
 </template>
 <script>
   export default {
-    layout: 'Website',
+    layout: 'Website2',
     data(){
       return {
         name:""
