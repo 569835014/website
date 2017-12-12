@@ -22,6 +22,9 @@ module.exports = {
     },
     {
       src:'~plugins/vuetify.js',ssr:true
+    },
+    {
+      src:'~plugins/flex.js',ssr:false
     }
   ],
   /*

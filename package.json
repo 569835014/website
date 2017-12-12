@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "cross-env": "^5.0.1",
+    "flex.css": "^1.1.7",
     "iview": "^2.7.4",
     "koa": "^2.3.0",
     "koa-bodyparser": "^4.2.0",
