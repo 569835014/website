@@ -30,7 +30,7 @@ module.exports = {
   /*
   ** Global CSS
   */
-  css: ['~static/css/main.css','~static/semantic/dist/semantic.min.css'],
+  css: ['~static/css/main.css','~static/semantic/lib/semantic.min.css'],
   /*
   ** Customize the progress-bar color
   */
