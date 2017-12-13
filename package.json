@@ -22,6 +22,8 @@
     "koa-router": "^7.2.1",
     "koa-session": "^5.5.0",
     "koa2-cors": "^2.0.3",
+    "less": "^2.7.3",
+    "less-loader": "^4.0.5",
     "lodash": "^4.17.4",
     "mongoose": "^4.12.3",
     "nuxt": "^1.0.0-rc3",
@@ -29,6 +31,8 @@
     "source-map-support": "^0.4.15",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
+    "tinymce": "^4.7.4",
+    "vue-aplayer": "^0.1.1",
     "vuetify": "^0.17.3",
     "vuex": "^3.0.1"
   },
