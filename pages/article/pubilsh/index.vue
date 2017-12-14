@@ -1,5 +1,5 @@
 <template>
-    <article>
+    <article class="publish">
 
         <Row :gutter="20">
             <Col :md="15" >
@@ -33,7 +33,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="extra content publish" flex="main:justify">
+                <div class="extra content " flex="main:right">
                     <button class="ui primary  button">
                         <i class="send outline icon"></i>
                         发布
@@ -112,9 +112,9 @@
 
 <style scoped lang="stylus">
     .publish
+        .card
+                width 100%
         .button
-            padding-left 1em
-            padding-right 1em
             &:last-child
                 margin-right 0
 </style>
