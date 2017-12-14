@@ -2,10 +2,10 @@
     <article>
 
         <Row :gutter="20">
-            <Col :md="16" >
+            <Col :md="15" >
                 <textarea id="articleEditor"></textarea>
             </Col>
-            <Col :md="8">
+            <Col :md="9">
                <div class="ui card">
                 <div class="content">
                     <div class="header">
@@ -33,10 +33,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="extra content">
-                    <button class="ui facebook button"><i class="send outline icon"></i> Facebook </button>
-                    <button class="ui facebook button"><i class="send outline icon"></i> Facebook </button>
-                    <button class="ui facebook button"><i class="send outline icon"></i> Facebook </button>
+                <div class="extra content publish" flex="main:justify">
+                    <button class="ui primary  button">
+                        <i class="send outline icon"></i>
+                        发布
+                    </button>
+                    <button class="ui negative button">
+                        <i class="save icon"></i> 保存 </button>
+                    <button class="ui positive  button">
+                        <i class="unhide icon"></i> 预览 </button>
                 </div>
             </div>
                 <div class="ui card">
@@ -105,6 +110,11 @@
   }
 </script>
 
-<style scoped>
-
+<style scoped lang="stylus">
+    .publish
+        .button
+            padding-left 1em
+            padding-right 1em
+            &:last-child
+                margin-right 0
 </style>
