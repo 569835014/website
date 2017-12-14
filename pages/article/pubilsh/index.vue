@@ -1,6 +1,64 @@
 <template>
     <article>
-        <textarea id="articleEditor"></textarea>
+
+        <Row :gutter="20">
+            <Col :md="16" >
+                <textarea id="articleEditor"></textarea>
+            </Col>
+            <Col :md="8">
+               <div class="ui card">
+                <div class="content">
+                    <div class="header">
+                        <i class="send outline icon"></i>
+                        发布
+                    </div>
+                </div>
+                <div class="content">
+                    <h4 class="ui sub header">活动</h4>
+                    <div class="ui small feed">
+                        <div class="event">
+                            <div class="content">
+                                <div class="summary"><a>Elliot Fu</a> added <a>Jenny Hess</a> to the project </div>
+                            </div>
+                        </div>
+                        <div class="event">
+                            <div class="content">
+                                <div class="summary"><a>Stevie Feliciano</a> was added as an <a>Administrator</a> </div>
+                            </div>
+                        </div>
+                        <div class="event">
+                            <div class="content">
+                                <div class="summary"><a>Helen Troy</a> added two pictures </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="extra content">
+                    <button class="ui facebook button"><i class="send outline icon"></i> Facebook </button>
+                    <button class="ui facebook button"><i class="send outline icon"></i> Facebook </button>
+                    <button class="ui facebook button"><i class="send outline icon"></i> Facebook </button>
+                </div>
+            </div>
+                <div class="ui card">
+                <div class="content">
+                    <div class="header">
+                        <i class="tags  icon"></i>
+                        标签
+                    </div>
+                </div>
+                <div class="content">
+                    <a class="ui label"><i class="mail icon"></i> Mail </a>
+                    <a class="ui label"><i class="mail icon"></i> Mail </a>
+                    <a class="ui label"><i class="mail icon"></i> Mail </a>
+                    <a class="ui label"><i class="mail icon"></i> Mail </a>
+                </div>
+                <div class="extra content">
+                    <button class="ui button">Join Project</button>
+                </div>
+            </div>
+            </Col>
+        </Row>
+
     </article>
 </template>
 
