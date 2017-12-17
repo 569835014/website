@@ -16,21 +16,11 @@
                 <div class="content">
                     <h4 class="ui sub header">活动</h4>
                     <div class="ui small feed">
-                        <div class="event">
-                            <div class="content">
-                                <div class="summary"><a>Elliot Fu</a> added <a>Jenny Hess</a> to the project </div>
-                            </div>
-                        </div>
-                        <div class="event">
-                            <div class="content">
-                                <div class="summary"><a>Stevie Feliciano</a> was added as an <a>Administrator</a> </div>
-                            </div>
-                        </div>
-                        <div class="event">
-                            <div class="content">
-                                <div class="summary"><a>Helen Troy</a> added two pictures </div>
-                            </div>
-                        </div>
+                       <div>
+                           <i class="icon wait"></i>
+                           发布
+                           <span>公开</span>
+                       </div>
                     </div>
                 </div>
                 <div class="extra content " flex="main:right">
@@ -52,10 +42,9 @@
                     </div>
                 </div>
                 <div class="content">
-                    <a class="ui label"><i class="mail icon"></i> Mail </a>
-                    <a class="ui label"><i class="mail icon"></i> Mail </a>
-                    <a class="ui label"><i class="mail icon"></i> Mail </a>
-                    <a class="ui label"><i class="mail icon"></i> Mail </a>
+                    <a class="ui label" v-for="(item,index) in tagList">
+                        <i class="mail icon"></i> {{item.name}}
+                    </a>
                 </div>
                 <div class="extra content">
                     <button class="ui button">Join Project</button>
@@ -68,6 +57,7 @@
 </template>
 
 <script>
+  import axios from 'axios'
   export default {
     name: 'index',
     layout:'Blog',
@@ -79,9 +69,24 @@
         }
       ]
     },
+    async asyncData({}){
+      let paging={
+        pageSize:1,
+        pageNum:10
+      }
+      let data=await axios.post('http://localhost:3000/tag/tagList',{
+        paging:paging
+      });
+      console.info(data.data.data);
+      return {
+        articleJSON:"",
+        tagList:data.data.data.list,
+        paging
+      }
+    },
     mounted(){
       this.$nextTick(()=>{
-        tinymce.init({
+        this.tinymce=tinymce.init({
           selector: '#articleEditor',
           branding: false,
           elementpath: false,

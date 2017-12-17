@@ -4,17 +4,28 @@ const Tag=mongoose.model('Tag')
 @controller('/tag')
 export class TagContorller{
 
-  @get('tagList')
+  @post('tagList')
+  @required({body:['paging']})
   async tagList(ctx,next){
+    const {paging} = ctx.request.body;
+    try{
+      let tags=await Tag.find({}).skip((paging.pageSize-1)*paging.pageNum).limit(paging.pageNum).exec()
+      return (ctx.body={
+        success:true,
+        data:{
+          list:tags
+        }
+      })
+    }catch (e){
+      return (ctx.body={
+        success:true,
+        state:'A0001',
+        message:e,
+        data:{}
+      })
+    }
 
-    let tags=await Tag.find({}).limit(20).exec()
 
-    return (ctx.body={
-      success:true,
-      data:{
-        list:tags
-      }
-    })
   }
 
   @post('add')
