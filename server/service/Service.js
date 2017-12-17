@@ -1,5 +1,5 @@
 import axios from 'axios'
-import config from '../service/config'
+import config from './config'
 class Service{
   constructor(){
     this.axios=axios

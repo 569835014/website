@@ -1,5 +1,5 @@
 import * as NAME from '../constant'
-import Service from '../service/TagService'
+import Service from '../../server/service/TagService'
 
 const queryTagList = async function ({commit},{paging}) {
   let data=await Service.queryTags({paging});

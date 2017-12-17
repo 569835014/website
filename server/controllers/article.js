@@ -1,10 +1,13 @@
 import { controller, get, post ,required} from '../decorator/router'
 import mongoose from 'mongoose'
-const Article=mongoose.model('Article')
+import Service from '../service/ArticleService'
 @controller('/article')
 export class ArticleContorller{
   @post('save')
-  @required({body:[]})
+  @required({body:['article']})
   async saveArticle(ctx,next){
+    let {article,id}=ctx.request.body
+    let data=await Service.saveArticle(article,id);
+    return ctx.body=data
   }
 }

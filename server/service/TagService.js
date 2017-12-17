@@ -13,7 +13,7 @@ class TagService extends Service{
         paging
       }
     });
-    return result.data
+    return result
   }
 }
 const service=new TagService()

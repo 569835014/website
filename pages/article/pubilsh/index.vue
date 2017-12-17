@@ -2,7 +2,7 @@
     <article class="publish">
         <div class="ui fluid icon input">
             <span>文章标题</span>
-            <input type="text" placeholder="广泛搜索">
+            <input type="text" placeholder="广泛搜索" v-model="article.title">
         </div>
         <Row :gutter="20">
             <Col :md="15" >
@@ -79,7 +79,19 @@
       }
       await store.dispatch('queryTagList',{paging});
       return {
-        articleJSON:"",
+        article:{
+          title:"",
+          content:"",
+          richType:1,
+          abstract:"",
+          openComment:1,
+          status:2,
+          avatarUrl:"",
+          // comments:[],
+          subtitle:"",
+          // articleType:"",
+          // tags:[]
+        },
         tagList:store.state.tags,
         paging
       }
@@ -111,8 +123,10 @@
       })
     },
     methods:{
-      publish(){
-        console.info(tinymce.activeEditor.getContent())
+      async publish(){
+        this.article.content=tinymce.activeEditor.getContent();
+        let data=await axios.post('http://localhost:3000/article/save',{article:this.article})
+        console.info(data)
       }
     },
     components:{
