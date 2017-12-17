@@ -1,6 +1,9 @@
 <template>
     <article class="publish">
-
+        <div class="ui fluid icon input">
+            <span>文章标题</span>
+            <input type="text" placeholder="广泛搜索">
+        </div>
         <Row :gutter="20">
             <Col :md="15" >
                 <textarea id="articleEditor"></textarea>
@@ -16,7 +19,7 @@
                 <div class="content">
                     <h4 class="ui sub header">活动</h4>
                     <div class="ui small feed">
-                       <div>
+                       <div >
                            <i class="icon wait"></i>
                            发布
                            <span>公开</span>
@@ -24,7 +27,7 @@
                     </div>
                 </div>
                 <div class="extra content " flex="main:right">
-                    <button class="ui primary  button">
+                    <button class="ui primary  button" @click="publish">
                         <i class="send outline icon"></i>
                         发布
                     </button>
@@ -69,24 +72,21 @@
         }
       ]
     },
-    async asyncData({}){
+    async asyncData({store}){
       let paging={
         pageSize:1,
         pageNum:10
       }
-      let data=await axios.post('http://localhost:3000/tag/tagList',{
-        paging:paging
-      });
-      console.info(data.data.data);
+      await store.dispatch('queryTagList',{paging});
       return {
         articleJSON:"",
-        tagList:data.data.data.list,
+        tagList:store.state.tags,
         paging
       }
     },
     mounted(){
-      this.$nextTick(()=>{
-        this.tinymce=tinymce.init({
+      this.$nextTick(async ()=>{
+        this.tinymce=await tinymce.init({
           selector: '#articleEditor',
           branding: false,
           elementpath: false,
@@ -109,6 +109,11 @@
           }
         });
       })
+    },
+    methods:{
+      publish(){
+        console.info(tinymce.activeEditor.getContent())
+      }
     },
     components:{
     }

@@ -1,2 +1,3 @@
 const USER_INFO='USER_INFO';
-export {USER_INFO}
+const TAG_LIST='TAG_LIST';
+export {USER_INFO,TAG_LIST}

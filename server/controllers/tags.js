@@ -1,5 +1,6 @@
 import { controller, get, post ,required} from '../decorator/router'
 import mongoose from 'mongoose'
+import Service from '../../store/service/TagService'
 const Tag=mongoose.model('Tag')
 @controller('/tag')
 export class TagContorller{
