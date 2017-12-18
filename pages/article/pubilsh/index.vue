@@ -50,7 +50,11 @@
                     </a>
                 </div>
                 <div class="extra content">
-                    <button class="ui button">Join Project</button>
+                    <div class="ui right labeled left icon input">
+                        <i class="tags icon"></i>
+                        <input type="text" placeholder="输入标签">
+                        <a class="ui tag label">添加标签 </a>
+                    </div>
                 </div>
             </div>
             </Col>
@@ -78,6 +82,7 @@
         pageNum:10
       }
       await store.dispatch('queryTagList',{paging});
+      console.info(store.state)
       return {
         article:{
           title:"",

@@ -25,7 +25,6 @@ class Server {
       allowMethods: ['GET', 'POST', 'DELETE'],
       allowHeaders: ['Content-Type', 'Authorization', 'Accept'],
     }))
-
     this.useMiddleWares(this.app)(MIDDLEWARES)
   }
 

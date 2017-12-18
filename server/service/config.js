@@ -8,7 +8,7 @@ let config={
   method: 'post', // default
   // 请求头信息
   headers: {},
-
+  baseURL:"http://127.0.0.1:3000",
   //parameter参数
   params: {
   },

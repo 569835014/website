@@ -1,0 +1,4 @@
+const SUCCESS='S0001'
+const ABNORMAL='A0001'
+
+export {SUCCESS,ABNORMAL}

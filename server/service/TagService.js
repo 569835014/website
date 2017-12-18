@@ -1,4 +1,5 @@
 import Service from './Service'
+import mongoose from 'mongoose'
 
 class TagService extends Service{
   constructor(){
@@ -8,12 +9,22 @@ class TagService extends Service{
   async queryTags({paging}){
     // let result=this.axios.post('"/tag/tagList',{paging})
     let result=await this.common({
-      url:" http://127.0.0.1:3000/tag/tagList",
+      url:"/tag/tagList",
       data:{
         paging
       }
     });
-    return result
+    return result.data
+  }
+  async addTag(name){
+    let tag;
+    try{
+      tag=await Tag.findOne({name:name})
+    }catch(e){
+      return {
+
+      }
+    }
   }
 }
 const service=new TagService()
