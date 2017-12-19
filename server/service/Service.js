@@ -2,7 +2,13 @@ import axios from 'axios'
 import config from './config'
 class Service{
   constructor(){
-    this.axios=axios
+    this.axios=axios;
+    this.ERROR={
+        state:"E0001",
+        data:{},
+        message:"",
+        success:false
+    }
   }
   extend(param) {
 
@@ -24,6 +30,18 @@ class Service{
     }
     console.info(result)
     return result
+  }
+  errorResult(e){
+    this.ERROR.message=e
+    return this.ERROR
+  }
+  getResult({success,state,message,data}){
+    return {
+        success,
+        state,
+        message,
+        data
+    }
   }
 }
 export default Service

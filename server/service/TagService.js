@@ -1,29 +1,54 @@
 import Service from './Service'
-const mongoose=require('mongoose')
 class TagService extends Service{
   constructor(){
     super()
 
   }
-  async queryTags({paging}){
-    // let result=this.axios.post('"/tag/tagList',{paging})
-    let result=await this.common({
-      url:"/tag/tagList",
-      data:{
-        paging
-      }
-    });
-    return result.data
+  init(model){
+      this.Tag=model
   }
-  async addTag(name){
-    let tag;
-    try{
-      tag=await Tag.findOne({name:name})
-    }catch(e){
-      return {
+  async queryTags({paging}){
 
+      let data;
+      try{
+          data=await this.Tag.find({}).skip((paging.pageSize-1)*paging.pageNum).limit(paging.pageNum).exec();
+          return this.getResult({
+              state:"S0001",
+              data:data,
+              message:"查询成功",
+              success:true
+          })
+      }catch (e){
+          return this.errorResult(e)
       }
-    }
+  }
+  async addTag(name,orderId){
+      let data;
+      try{
+          data=await this.Tag.find({name:name}).exec();
+          if(data){
+              return this.getResult({
+                  state:"A0001",
+                  data:{},
+                  message:"该标签已经存在",
+                  success:false
+              })
+          }
+          data=new this.Tag({
+              name:name,
+              orderId:orderId
+          });
+          await data.save();
+          return this.getResult({
+              state:"S0001",
+              data:data,
+              message:"添加成功",
+              success:true
+          })
+      }catch (e){
+          return this.errorResult(e)
+      }
+
   }
 }
 const service=new TagService()

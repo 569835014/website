@@ -1,14 +1,7 @@
 import * as NAME from '../constant'
-import Service from '../../server/service/TagService'
-
+import Api from '../api/TagApi'
+const Service=new Api();
 const queryTagList = async function ({commit},{paging}) {
-  let data=await Service.queryTags({paging});
-
-  if(data.list){
-    commit(NAME.TAG_LIST, data.list);
-  }else{
-    commit(NAME.TAG_LIST, []);
-  }
-
+    commit(NAME.TAG_LIST,await Service.queryTags({paging}));
 };
 export {queryTagList}
