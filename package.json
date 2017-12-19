@@ -17,6 +17,7 @@
     "flex.css": "^1.1.7",
     "gulp": "^3.9.1",
     "iview": "^2.7.4",
+    "jquery": "^3.2.1",
     "koa": "^2.3.0",
     "koa-bodyparser": "^4.2.0",
     "koa-router": "^7.2.1",
@@ -40,17 +41,17 @@
     "babel-preset-latest-node": "^0.2.2",
     "babel-preset-stage-3": "^6.24.1",
     "eslint": "^3.13.1",
-    "less": "^2.7.3",
-    "stylus": "^0.54.5",
-    "stylus-loader": "^3.0.1",
-    "less-loader": "^4.0.5",
     "eslint-config-standard": "^10.2.1",
     "eslint-plugin-html": "^2.0.3",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-node": "^4.2.2",
     "eslint-plugin-promise": "^3.4.0",
     "eslint-plugin-standard": "^3.0.1",
+    "less": "^2.7.3",
+    "less-loader": "^4.0.5",
     "nodemon": "^1.11.0",
-    "scmp": "^2.0.0"
+    "scmp": "^2.0.0",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.1"
   }
 }

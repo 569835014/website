@@ -1,13 +1,14 @@
 import axios from 'axios'
 import config from './config'
+import * as CODE from '../../assets/common/states'
 class Service{
   constructor(){
     this.axios=axios;
-    this.ERROR={
-        state:"E0001",
+    this.result={
+        state:"",
         data:{},
         message:"",
-        success:false
+        success:true
     }
   }
   extend(param) {
@@ -21,27 +22,33 @@ class Service{
       let data=await axios(param.url,_config);
       result=data.data
     }catch (e){
-      result={
-        success:false,
-        state:'A0001',
-        message:e,
-        data:{}
-      }
+      return this.errorResult(e)
     }
-    console.info(result)
     return result
   }
   errorResult(e){
-    this.ERROR.message=e
-    return this.ERROR
+    this.result.message=e
+    this.result.state=CODE.ERROR
+    this.result.success=false
+    return this.result
   }
-  getResult({success,state,message,data}){
-    return {
-        success,
-        state,
-        message,
-        data
+  successResult(data,message='操作成功'){
+    this.result={
+      state:CODE.SUCCESS,
+      data:data,
+      message:message,
+      success:true
     }
+    return this.result
+  }
+  abnormalResult(data,message='操作成功',state=CODE.ABNORMAL){
+    this.result={
+      state:state,
+      data:{},
+      message:message,
+      success:false
+    }
+    return this.result
   }
 }
 export default Service

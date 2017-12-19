@@ -59,12 +59,28 @@
             </div>
             </Col>
         </Row>
+        <model :visible="true">
+            <form class="ui form addTag">
+                <div class="field">
 
+                    <div class="two fields">
+                        <div class="field">
+                            <label>标签名称</label>
+                            <input type="text" name="shipping[first-name]" placeholder="请填入标签名称"></div>
+                        <div class="field">
+                            <label>标签排序</label>
+                            <input type="text" name="shipping[last-name]" placeholder="请填入标签排序">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </model>
     </article>
 </template>
 
 <script>
   import axios from 'axios'
+  import Model from '../../../components/Model'
   export default {
     name: 'index',
     layout:'Blog',
@@ -135,15 +151,19 @@
       }
     },
     components:{
+      Model
     }
   }
 </script>
 
 <style scoped lang="stylus">
+    .addTag
+        width 100%
     .publish
         .card
                 width 100%
         .button
             &:last-child
                 margin-right 0
+
 </style>

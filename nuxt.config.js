@@ -21,6 +21,9 @@ module.exports = {
     },
     {
       src:'~plugins/flex.js',ssr:false
+    },
+    {
+      src:'~plugins/jquery',ssr:false
     }
   ],
   /*

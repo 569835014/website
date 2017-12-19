@@ -1,9 +1,7 @@
 import Service from './Service'
-const mongoose=require('mongoose')
-const Article=mongoose.model('Article')
 class ArticleService extends Service{
   constructor(){
-    super()
+    super('Article')
   }
   async saveArticle(article,id){
     let result=null;

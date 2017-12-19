@@ -1,12 +1,23 @@
-import {SUCCESS,ABNORMAL} from '../../assets/common/states'
+import * as states from '../../assets/common/states'
 class Result{
-  constructor(success=true){
-
+  constructor(){
     this.result={
-      success,
-      state:success?SUCCESS:ABNORMAL,
+      success:true,
+      state:'',
       message:"",
       data:null
     }
+    this.rules={}
+    Object.assign(this.rules,states)
+  }
+  getResult({success,state,message,data}){
+    this.result={
+      success,
+      state:this.rules[state],
+      message,
+      data
+    }
   }
 }
+const result=new Result()
+export default result
