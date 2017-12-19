@@ -20,7 +20,8 @@ class TagService extends Service{
   async addTag(name,orderId){
       let data;
       try{
-          data=await this.Tag.find({name:name}).exec();
+          data=await this.Tag.findOne({name:name}).exec();
+          console.info(data);
           if(data){
               return this.abnormalResult(null,'改标签已存在')
           }

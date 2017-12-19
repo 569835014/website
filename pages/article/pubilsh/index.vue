@@ -53,23 +53,23 @@
                     <div class="ui right labeled left icon input">
                         <i class="tags icon"></i>
                         <input type="text" placeholder="输入标签">
-                        <a class="ui tag label">添加标签 </a>
+                        <a class="ui tag label" @click.stop="visible=true">添加标签 </a>
                     </div>
                 </div>
             </div>
             </Col>
         </Row>
-        <model :visible="true">
+        <model :visible="visible" @confirm="saveTag">
             <form class="ui form addTag">
                 <div class="field">
 
                     <div class="two fields">
                         <div class="field">
                             <label>标签名称</label>
-                            <input type="text" name="shipping[first-name]" placeholder="请填入标签名称"></div>
+                            <input type="text" name="shipping[first-name]" v-model="tag.name" placeholder="请填入标签名称"></div>
                         <div class="field">
                             <label>标签排序</label>
-                            <input type="text" name="shipping[last-name]" placeholder="请填入标签排序">
+                            <input type="text" name="shipping[last-name]" v-model="tag.orderId" placeholder="请填入标签排序">
                         </div>
                     </div>
                 </div>
@@ -81,6 +81,8 @@
 <script>
   import axios from 'axios'
   import Model from '../../../components/Model'
+  import TagApi from '../../../store/api/TagApi'
+  const Service =new TagApi()
   export default {
     name: 'index',
     layout:'Blog',
@@ -98,8 +100,12 @@
         pageNum:10
       }
       await store.dispatch('queryTagList',{paging});
-      console.info(store.state)
       return {
+        visible:false,
+        tag:{
+          name:"",
+          orderId:null,
+        },
         article:{
           title:"",
           content:"",
@@ -148,6 +154,10 @@
         this.article.content=tinymce.activeEditor.getContent();
         let data=await axios.post('http://localhost:3000/article/save',{article:this.article})
         console.info(data)
+      },
+      async saveTag(){
+        alert(1)
+        let data=await Service.addTag(this.tag);
       }
     },
     components:{
