@@ -1,6 +1,5 @@
 import Service from './Service'
-import mongoose from 'mongoose'
-
+const mongoose=require('mongoose')
 class TagService extends Service{
   constructor(){
     super()
