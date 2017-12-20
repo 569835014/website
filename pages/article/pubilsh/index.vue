@@ -83,7 +83,6 @@
   import Model from '../../../components/Model'
   import TagApi from '../../../api/TagApi'
   const Service =new TagApi()
-  import {Notice} from 'iview'
   export default {
     name: 'index',
     layout:'Blog',
@@ -91,7 +90,7 @@
 
       script:[
         {
-          src:'https://cloud.tinymce.com/stable/tinymce.min.js'
+          src:'https://cdn.bootcss.com/tinymce/4.7.4/tinymce.min.js'
         }
       ]
     },
@@ -164,8 +163,11 @@
       //新增标签
       async saveTag(){
         let data=await Service.addTag(this.tag);
-        this.visible=false;
-        this.tagList.push(data);
+        if(data){
+          this.visible=false;
+          this.tagList.push(data);
+        }
+
       },
         selectTag(item){
           if(this.selectTag.include(item)){

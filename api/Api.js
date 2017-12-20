@@ -4,8 +4,7 @@
  */
 import config from './config'
 import axios from 'axios'
-import * as CODE from '../assets/common/states'
-
+import Rrocessing from './processing'
 class Api {
     constructor() {
     }
@@ -42,50 +41,13 @@ class Api {
 
     //通用api
     async common(param) {
-
-        let result = true;
         let _config = this.configure(param);
-
         await this.before();//等待请求前的操作完成
-        let res
-        try {
-            res = await axios(param.url, _config);
-
-        } catch (e) {
-
-            res = e;
-            param.error ? param.error(res) : this.error(res)
-            return false
-        }
-        if (res.data.state === CODE.SUCCESS) {//状态为成功的时候
-            if (res.data.data) {
-                if(param.success) param.success(res.data.data);
-                result=res.data.data;
-            } else {//没有返回参数，操作成功直接打印信息
-            }
-        }
-        else {//异常处理，需要特殊处理的时候再参数里面加入异常函数
-            if (res.data.status === "L0001") {
-                this.vm.$swal({
-                    title: '温馨提示',
-                    text: "登录超时",
-                    type: 'error',
-                })
-                setTimeout(() => {
-                    this.loginAgain();
-                }, 1600)
-                return
-            }
-            if (param.abnormal) {//如果配置了异常处理走配置，没有配置走通用异常
-                param.abnormal(res.data);
-            } else {
-                this.abnormal(res.data)
-            }
-            result = false
-        }
-        await this.after();
+        let res = await axios(param.url, _config);
+        let result=await Rrocessing.proceResult(param,res.data);
         return new Promise((r)=>{
-            r(result)
+            if(result) r(res.data.data)
+           else r(false)
         })
     };
 
