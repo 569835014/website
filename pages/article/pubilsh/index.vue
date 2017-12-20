@@ -45,8 +45,8 @@
                     </div>
                 </div>
                 <div class="content">
-                    <a class="ui label" v-for="(item,index) in tagList">
-                        <i class="mail icon"></i> {{item.name}}
+                    <a class="ui label" v-for="(item,index) in tagList" @click="selectTag(item)">
+                        <i class="tag icon"></i> {{item.name}}
                     </a>
                 </div>
                 <div class="extra content">
@@ -59,7 +59,7 @@
             </div>
             </Col>
         </Row>
-        <model :visible="visible" @confirm="saveTag">
+        <model :visible.sync="visible" @confirm="saveTag">
             <form class="ui form addTag">
                 <div class="field">
 
@@ -81,8 +81,9 @@
 <script>
   import axios from 'axios'
   import Model from '../../../components/Model'
-  import TagApi from '../../../store/api/TagApi'
+  import TagApi from '../../../api/TagApi'
   const Service =new TagApi()
+  import {Notice} from 'iview'
   export default {
     name: 'index',
     layout:'Blog',
@@ -93,6 +94,11 @@
           src:'https://cloud.tinymce.com/stable/tinymce.min.js'
         }
       ]
+    },
+    data(){
+        return{
+            selectTags:[],
+        }
     },
     async asyncData({store}){
       let paging={
@@ -155,10 +161,18 @@
         let data=await axios.post('http://localhost:3000/article/save',{article:this.article})
         console.info(data)
       },
+      //新增标签
       async saveTag(){
-        alert(1)
         let data=await Service.addTag(this.tag);
-      }
+        this.visible=false;
+        this.tagList.push(data);
+      },
+        selectTag(item){
+          if(this.selectTag.include(item)){
+
+          }
+          this.selectTag.push(item);
+        }
     },
     components:{
       Model

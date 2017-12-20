@@ -1,6 +1,6 @@
 <template>
     <div class="ui modal">
-        <i class="close icon"></i>
+        <i class="remove icon" @click.stop="cancel()"></i>
         <div class="header">
             Profile Picture
         </div>
@@ -47,9 +47,10 @@
       },
       cancel(){
         this.$emit('cancel');
+        this.$emit('update:visible', false)
       },
       confirm(){
-        this.$emit('confirm')
+        this.$emit('confirm');
       }
     },
     watch:{
@@ -60,6 +61,18 @@
   }
 </script>
 
-<style scoped>
-
+<style scoped lang="stylus">
+    .ui.modal>.remove {
+        cursor: pointer;
+        position: absolute;
+        top: -2.5rem;
+        right: -2.5rem;
+        z-index: 1;
+        opacity: .8;
+        font-size: 1.25em;
+        color: #fff;
+        width: 2.25rem;
+        height: 2.25rem;
+        padding: .625rem 0 0;
+    }
 </style>

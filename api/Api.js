@@ -4,7 +4,7 @@
  */
 import config from './config'
 import axios from 'axios'
-import * as CODE from '../../assets/common/states'
+import * as CODE from '../assets/common/states'
 
 class Api {
     constructor() {
