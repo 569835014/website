@@ -23,7 +23,7 @@ class TagService extends Service{
           data=await this.Tag.findOne({name:name}).exec();
           console.info(data);
           if(data){
-              return this.abnormalResult(null,'改标签已存在')
+              return this.abnormalResult(null,'该标签已存在')
           }
           data=new this.Tag({
               name:name,

@@ -34,6 +34,12 @@
     },
     mounted(){
       this.$nextTick(()=>{
+        $(this.$el).modal({
+          onHide:()=>{
+            this.$emit('cancel');
+            this.$emit('update:visible', false)
+          }
+        })
         this.isVisible(this.visible)
       })
     },

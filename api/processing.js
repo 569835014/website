@@ -19,7 +19,12 @@ class Processing{
         return false
       case CODE.ERROR:
         this.config.title='系统异常';
-        this.config.desc=result.message;
+        if(typeof result.message==='object'){
+          this.config.desc=result.message.message;
+        }else{
+          this.config.desc=result.message
+        }
+        if (params.error)  await params.error(result);
         Notice.error(this.config);
         return false
     }

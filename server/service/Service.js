@@ -28,6 +28,7 @@ class Service{
   }
   errorResult(e){
     this.result.message=e
+    this.result.data={}
     this.result.state=CODE.ERROR
     this.result.success=false
     return this.result

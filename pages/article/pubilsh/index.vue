@@ -60,16 +60,16 @@
             </Col>
         </Row>
         <model :visible.sync="visible" @confirm="saveTag">
-            <form class="ui form addTag">
+            <form class="ui form addTag" ref="tags">
                 <div class="field">
 
                     <div class="two fields">
                         <div class="field">
                             <label>标签名称</label>
-                            <input type="text" name="shipping[first-name]" v-model="tag.name" placeholder="请填入标签名称"></div>
+                            <input type="text" name="tagname" v-model="tag.name" placeholder="请填入标签名称"></div>
                         <div class="field">
                             <label>标签排序</label>
-                            <input type="text" name="shipping[last-name]" v-model="tag.orderId" placeholder="请填入标签排序">
+                            <input type="text" name="tagorderId" v-model="tag.orderId" placeholder="请填入标签排序">
                         </div>
                     </div>
                 </div>
@@ -87,7 +87,6 @@
     name: 'index',
     layout:'Blog',
     head:{
-
       script:[
         {
           src:'https://cdn.bootcss.com/tinymce/4.7.4/tinymce.min.js'
@@ -152,6 +151,11 @@
             borderCollapse: 'collapse'
           }
         });
+        $(this.$refs.tags).form({
+          fields:{
+
+          }
+        })
       })
     },
     methods:{
@@ -169,12 +173,13 @@
         }
 
       },
-        selectTag(item){
+      selectTag(item){
           if(this.selectTag.include(item)){
 
           }
           this.selectTag.push(item);
-        }
+        },
+
     },
     components:{
       Model
