@@ -11,6 +11,9 @@ class Service{
         success:true
     }
   }
+  init(model){
+    this.Model=model
+  }
   extend(param) {
 
     return Object.assign({}, config, param)

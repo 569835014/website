@@ -45,15 +45,16 @@
                     </div>
                 </div>
                 <div class="content">
-                    <a class="ui label" v-for="(item,index) in tagList" @click="selectTag(item)">
-                        <i class="tag icon"></i> {{item.name}}
+                    <a class="ui label" :class="includes(item.name)?'teal':''" v-for="(item,index) in tagList" @click="selectTag(item)">
+                       {{item.name}}
                     </a>
                 </div>
-                <div class="extra content">
+                <div class="extra content tag-btn">
                     <div class="ui right labeled left icon input">
-                        <i class="tags icon"></i>
-                        <input type="text" placeholder="输入标签">
-                        <a class="ui tag label" @click.stop="visible=true">添加标签 </a>
+                        <button class="ui primary  button" @click="visible=true">
+                            <i class="add square outline icon"></i>
+                            发布
+                        </button>
                     </div>
                 </div>
             </div>
@@ -82,7 +83,9 @@
   import axios from 'axios'
   import Model from '../../../components/Model'
   import TagApi from '../../../api/TagApi'
-  const Service =new TagApi()
+  import ArticleApi from '../../../api/ArticleApi'
+  const Service =new TagApi();
+  const Article=new ArticleApi()
   export default {
     name: 'index',
     layout:'Blog',
@@ -92,11 +95,6 @@
           src:'https://cdn.bootcss.com/tinymce/4.7.4/tinymce.min.js'
         }
       ]
-    },
-    data(){
-        return{
-            selectTags:[],
-        }
     },
     async asyncData({store}){
       let paging={
@@ -121,10 +119,10 @@
           // comments:[],
           subtitle:"",
           // articleType:"",
-          // tags:[]
+          tags:[]
         },
         tagList:store.state.tags,
-        paging
+        paging,
       }
     },
     mounted(){
@@ -161,8 +159,8 @@
     methods:{
       async publish(){
         this.article.content=tinymce.activeEditor.getContent();
-        let data=await axios.post('http://localhost:3000/article/save',{article:this.article})
-        console.info(data)
+        let data=await Article.saveArticleApi({article:this.article})
+        console.info(data);
       },
       //新增标签
       async saveTag(){
@@ -174,12 +172,22 @@
 
       },
       selectTag(item){
-          if(this.selectTag.include(item)){
-
+        let len=this.article.tags.length-1;
+        for(let i=len;i>-1;i--){
+          if(this.article.tags[i].name===item.name){
+            return this.tags.splice(i,1)
           }
-          this.selectTag.push(item);
+        }
+          this.article.tags.push(item);
         },
-
+      includes(name){
+        for(let i=0;i<this.article.tags.length;i++){
+          if(this.article.tags[i].name===name){
+            return true
+          }
+        }
+        return false
+      }
     },
     components:{
       Model
@@ -191,6 +199,8 @@
     .addTag
         width 100%
     .publish
+        .tag-btn
+            text-align right
         .card
                 width 100%
         .button

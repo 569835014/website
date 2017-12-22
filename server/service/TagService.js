@@ -4,14 +4,12 @@ class TagService extends Service{
     super('Tag')
 
   }
-  init(model){
-      this.Tag=model
-  }
+
   async queryTags({paging}){
 
       let data;
       try{
-          data=await this.Tag.find({}).skip((paging.pageSize-1)*paging.pageNum).limit(paging.pageNum).exec();
+          data=await this.Model.find({}).skip((paging.pageSize-1)*paging.pageNum).limit(paging.pageNum).exec();
         return this.successResult(data,'查询成功')
       }catch (e){
           return this.errorResult(e)
@@ -20,12 +18,12 @@ class TagService extends Service{
   async addTag(name,orderId){
       let data;
       try{
-          data=await this.Tag.findOne({name:name}).exec();
+          data=await this.Model.findOne({name:name}).exec();
           console.info(data);
           if(data){
               return this.abnormalResult(null,'该标签已存在')
           }
-          data=new this.Tag({
+          data=new this.Model({
               name:name,
               orderId:orderId
           });

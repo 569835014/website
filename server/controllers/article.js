@@ -1,6 +1,8 @@
 import { controller, get, post ,required} from '../decorator/router'
 import mongoose from 'mongoose'
 import Service from '../service/ArticleService'
+const Article=mongoose.model('Article')
+Service.init(Article)
 @controller('/article')
 export class ArticleContorller{
   @post('save')

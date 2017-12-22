@@ -6,13 +6,13 @@ class ArticleService extends Service{
   async saveArticle(article,id){
     try{
       let data
-      if(id)data=await Article.findOne({id:id}).exec();
-      else data=new Article(article)
-      data.title=article.title
-      data.content=article.content;
+      if(id)data=await this.Model.findOne({id:id}).exec();
+      else data=new this.Model(article)
+      console.info(data)
       await data.save();
       return this.successResult(data,'保存成功！')
     }catch(e) {
+      console.info(e)
       return this.errorResult(e)
     }
   }
