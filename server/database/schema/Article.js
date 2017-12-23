@@ -27,6 +27,16 @@ class Article extends BaseSchema{
           ref: "Comment"
         }
       ],
+      like:{
+        type:Number,
+        default:0
+      },
+      //分享数
+      share:{
+        type:Number,
+        default:0
+      },
+      keyWords:String,
       subtitle: String, //副标题
       articleType: { //文章类型
         type: ObjectId,
@@ -37,7 +47,11 @@ class Article extends BaseSchema{
           type: ObjectId,
           ref: "Tag"
         }
-      ]
+      ],
+      user:{
+        type:ObjectId,
+        ref:"User"
+      }
     }
     super(config,"Article")
   }

@@ -27,6 +27,13 @@ class Processing{
         if (params.error)  await params.error(result);
         Notice.error(this.config);
         return false
+      case CODE.SUCCESS:
+        if(params.showNotice) {
+          this.config.title='恭喜你';
+          this.config.desc=result.message;
+          Notice.success(this.config);
+          return true
+        }
     }
     return true
   }

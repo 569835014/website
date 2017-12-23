@@ -12,4 +12,15 @@ export class ArticleContorller{
     let data=await Service.saveArticle(article,id);
     return ctx.body=data
   }
+  @post('list')
+  async queryList(ctx,next){
+    let {paging,type,tagName}=ctx.request.body;
+    return ctx.body=await Service.queryList(paging,type,tagName)
+  }
+  @post('findOne')
+  @required({body:['id']})
+  async queryById(ctx,next){
+    let{id}=ctx.request.body;
+    return ctx.body=await Service.queryById(id)
+  }
 }

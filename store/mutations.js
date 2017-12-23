@@ -7,6 +7,12 @@ const mutations = {
   },
   [NAME.TAG_LIST] (state, tags) {
     state.tags = tags
+  },
+  [NAME.ARTICLE_LIST] (state, articles) {
+    state.articles = articles
+  },
+  [NAME.ARTICLE] (state, article) {
+    state.article = article
   }
 }
 export default mutations
