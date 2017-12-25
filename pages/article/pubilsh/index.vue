@@ -23,7 +23,7 @@
         <Row :gutter="20">
             <Col :md="15">
             <textarea id="articleEditor"></textarea>
-            <mavon-editor :ishljs = "true"></mavon-editor>
+            <mavon-editor :ishljs = "true" v-model="markdown"></mavon-editor>
             </Col>
             <Col :md="9">
             <div class="ui card">
@@ -128,6 +128,7 @@
           name: '',
           orderId: null,
         },
+        markdown:"",
         article: {
           title: '',
           content: '',
