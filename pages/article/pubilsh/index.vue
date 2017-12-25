@@ -23,6 +23,7 @@
         <Row :gutter="20">
             <Col :md="15">
             <textarea id="articleEditor"></textarea>
+            <mavon-editor :ishljs = "true"></mavon-editor>
             </Col>
             <Col :md="9">
             <div class="ui card">

@@ -24,6 +24,9 @@ module.exports = {
     },
     {
       src:'~plugins/jquery',ssr:false
+    },
+    {
+      src:'~plugins/mavonEdit',ssr:false
     }
   ],
   /*

@@ -3,9 +3,9 @@
        <div  flex="dir:left box:last">
            <ul class="articles">
                <li class="ui card article-item" v-for="(item,index) in articles" :key="index">
-                   <nuxt-link :to="{path:`article/pubilsh/${item._id}`,param:{id:item._id}}">
-                       <a class="ui blue ribbon label article-label">Community</a>
-                       <div class="content">
+                   <a class="ui blue ribbon label article-label">Community</a>
+                   <div class="content">
+                       <nuxt-link :to="{path:`article/pubilsh/${item._id}`,param:{id:item._id}}">
                            <h4 class="header">{{item.title}}</h4>
                            <div class="meta">
                                <span class="right floated time">2 天前</span>
@@ -14,28 +14,30 @@
                            <div class="description article-description">
                                <p>{{item.abstract}}</p>
                            </div>
-                       </div>
-                       <div class="extra content">
-                           <div class="left floated">
-                               <div class="ui labeled button" tabindex="0">
-                                   <div class="ui red button button-icon"><i class="heart icon"></i></div>
-                                   <a class="ui basic red left pointing label">
-                                       {{item.like+400}}
-                                   </a>
-                               </div>
-                               <div class="ui labeled button" tabindex="0">
-                                   <div class="ui basic blue button"><i class="fork icon"></i></div>
-                                   <a class="ui basic left pointing blue label">
-                                       {{item.share+300}}
-                                   </a>
-                               </div>
+                       </nuxt-link>
+
+                   </div>
+                   <div class="extra content">
+                       <div class="left floated">
+                           <div class="ui labeled button" tabindex="0">
+                               <div class="ui red button button-icon"><i class="heart icon"></i></div>
+                               <a class="ui basic red left pointing label">
+                                   {{item.like+400}}
+                               </a>
                            </div>
-                           <div class="right floated author">
-                               <img class="ui avatar image" src="http://www.semantic-ui.cn/images/avatar/small/matt.jpg">
-                               Matt
+                           <div class="ui labeled button" tabindex="0">
+                               <div class="ui basic blue button"><i class="fork icon"></i></div>
+                               <a class="ui basic left pointing blue label">
+                                   {{item.share+300}}
+                               </a>
                            </div>
                        </div>
-                   </nuxt-link>
+                       <div class="right floated author">
+                           <img class="ui avatar image" src="http://www.semantic-ui.cn/images/avatar/small/matt.jpg">
+                           Matt
+                       </div>
+                   </div>
+
 
                </li>
            </ul>
