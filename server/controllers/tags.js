@@ -1,40 +1,23 @@
 import { controller, get, post ,required} from '../decorator/router'
 import mongoose from 'mongoose'
 const Tag=mongoose.model('Tag')
+import Service from '../service/TagService'
+Service.init(Tag)
 @controller('/tag')
 export class TagContorller{
 
-  @get('tagList')
+  @post('tagList')
+  @required({body:['paging']})
   async tagList(ctx,next){
-
-    let tags=await Tag.find({}).limit(20).exec()
-
-    return (ctx.body={
-      success:true,
-      data:{
-        list:tags
-      }
-    })
+    const {paging} = ctx.request.body;
+    let data=await Service.queryTags({paging});
+    return ctx.body=data
   }
 
   @post('add')
+  @required({body:['name','orderId']})
   async addTag(ctx,next){
-
-    let tags=await Tag.findOne({
-      name:"原型"
-    })
-    if(!tags){
-      tags=new Tag({
-        name:'原型',
-        orderId:'10'
-      })
-      await tags.save();
-    }
-    return (ctx.body={
-      success:true,
-      data:{
-        list:tags
-      }
-    })
+    let {name,orderId}= ctx.request.body;
+    return ctx.body=await Service.addTag(name,orderId)
   }
 }

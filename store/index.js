@@ -11,6 +11,9 @@ const createStore=()=>{
     return new Vuex.Store({
         state:{
             user:null,
+            tags:[],
+            articles:[],
+            article:{}
         },
         getters,
         actions,
