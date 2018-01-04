@@ -6,7 +6,7 @@
                 <nav role="navigation" class="app-nav">
                     <ul class="nav-lists" flex="dir:left">
                         <li class="nav-item nav-menu">
-                            <div class="phone-show-menu">
+                            <div class="phone-show-menu" flex="dir:center">
                                 <span >首页</span>
                                 <i class="caret down icon"></i>
                             </div>
