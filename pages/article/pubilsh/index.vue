@@ -20,10 +20,14 @@
 
             </div>
         </div>
+        <div class="ui toggle checkbox switch-mark-down">
+            <input type="checkbox" name="public" v-model="isEditor">
+            <label>切换至富文本编辑器</label>
+        </div>
         <Row :gutter="20">
             <Col :md="15">
-            <textarea id="articleEditor"></textarea>
-            <mavon-editor :ishljs = "true" v-model="markdown"></mavon-editor>
+            <textarea id="articleEditor" v-show="isEditor"></textarea>
+            <mavon-editor :ishljs = "true" v-model="markdown" v-show="!isEditor"></mavon-editor>
             </Col>
             <Col :md="9">
             <div class="ui card">
@@ -145,6 +149,7 @@
         },
         tagList: store.state.tags,
         paging,
+        isEditor:false
       }
     },
     mounted () {
@@ -213,12 +218,20 @@
     }
   }
 </script>
+<style lang="stylus">
+    .ui.dimmer
 
+        z-index 999 !important
+</style>
 <style scoped lang="stylus">
+    .v-note-wrapper
+        position static
     .addTag
         width 100%
-
     .publish
+
+        .switch-mark-down
+            margin 0 0  1em
         .form
             label
                 text-align right
