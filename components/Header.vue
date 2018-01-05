@@ -6,7 +6,7 @@
                 <nav role="navigation" class="app-nav">
                     <ul class="nav-lists" flex="dir:left">
                         <li class="nav-item nav-menu">
-                            <div class="phone-show-menu">
+                            <div class="phone-show-menu" flex="dir:center">
                                 <span >首页</span>
                                 <i class="caret down icon"></i>
                             </div>
@@ -58,37 +58,34 @@
     @import "../static/stylus/style.styl"
     //app头部
     .app-header
+        height $app-hearder-h
+        z-index 5
+        position fixed
+        left 0
+        top 0
         width 100%
-        .main-header
-            z-index 5
-            width 100%
-            position fixed
-            left 0
-            top 0
-            box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
-            margin-bottom 20px
-            background #fff
-            //app导航
-            .container
-                max-width 1127px
-                margin 0 auto
-                .app-nav
-                    .nav-lists
-                        .nav-item
+        box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+        margin-bottom 20px
+        background #fff
+        //app导航
+        .container
+            margin 0 auto
+            .app-nav
+                .nav-lists
+                    .nav-item
+                        line-height $app-hearder-h
+                        .nav-menu li
+                            background blue
+                        a
+                            display block
                             line-height $app-hearder-h
-                            .nav-menu li
-                                background blue
-                            a
-                                display block
-                                line-height $app-hearder-h
-                                padding 0 20px
-                                font-size $app-lg-font
-                                text-align center
-                        .nav-menu
-                            .phone-show-menu
-                                cursor pointer
-                                display none
-                        .search
-                            margin-left 100px
+                            padding 0 20px
+                            font-size $app-lg-font
+                            text-align center
+                        .phone-show-menu
+                            cursor pointer
+                            display none
+                    .search
+                        margin-left 100px
     @import "../static/stylus/media.styl"
 </style>
