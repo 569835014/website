@@ -1,30 +1,29 @@
 @media (max-width: 980px)
   .app-header
-    .container
-      width 96%
-      .app-nav
-        .nav-lists
-          background-color: #fff
-          .nav-item
-          .nav-menu
-            display block
-            position absolute
-            left 0
-            top 0
-            background-color #fff
-            .phone-show-menu
-              color #007fff
-              font-size 1.3rem
-              -webkit-box-pack center
-              -ms-flex-pack center
-              justify-content center
-              padding 0 2rem
-            .phone-hide
-              display none
-              background-color #fff
-              box-shadow 0 1px 2px 0 rgba(0,0,0,.1)
-              border 1px solid hsla(217,5%,71%,.45)
-              border-radius 4px
-              font-size 1.2rem
-            .phone-hide.show
+    .main-header
+      .container
+        width 96%
+        .app-nav
+          .nav-lists
+            background-color: #fff
+            .nav-menu
               display block
+              position absolute
+              left 0
+              top 0
+              background-color #fff
+              .phone-show-menu
+                display inline-block
+                color #007fff
+                font-size 1.3rem
+                padding 0 2rem
+                height $app-hearder-h
+              .phone-hide
+                display none
+                background-color #fff
+                box-shadow 0 1px 2px 0 rgba(0,0,0,.1)
+                border 1px solid hsla(217,5%,71%,.45)
+                border-radius 4px
+                font-size 1.2rem
+              .phone-hide.show
+                display block
