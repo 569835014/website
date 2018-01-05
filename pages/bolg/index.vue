@@ -41,9 +41,9 @@
 
                </li>
            </ul>
-           <article class="main-right">
+           <!--<article class="main-right">
                dasfdsasda
-           </article>
+           </article>-->
        </div>
 
    </section>
