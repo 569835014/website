@@ -26,8 +26,11 @@
         </div>
         <Row :gutter="20">
             <Col :md="15">
-            <textarea id="articleEditor" v-show="isEditor"></textarea>
-            <mavon-editor :ishljs = "true" v-model="markdown" v-show="!isEditor"></mavon-editor>
+            <div v-show="isEditor">
+                <textarea id="articleEditor" ></textarea>
+            </div>
+
+            <mavon-editor :ishljs="true" v-model="article.content" v-show="!isEditor"></mavon-editor>
             </Col>
             <Col :md="9">
             <div class="ui card">
@@ -104,119 +107,155 @@
 </template>
 
 <script>
-  import Model from '../../../components/Model'
-  import TagApi from '../../../api/TagApi'
-  import ArticleApi from '../../../api/ArticleApi'
-
-  const Service = new TagApi()
-  const Article = new ArticleApi()
-  export default {
-    name: 'index',
-    layout: 'Blog',
-    head: {
-      script: [
-        {
-          src: 'https://cdn.bootcss.com/tinymce/4.7.4/tinymce.min.js'
-        }
-      ]
-    },
-    async asyncData ({store}) {
-      let paging = {
-        pageSize: 1,
-        pageNum: 10
-      }
-      await store.dispatch('queryTagList', {paging})
-      return {
-        visible: false,
-        tag: {
-          name: '',
-          orderId: null,
+    import Model from '../../../components/Model'
+    import TagApi from '../../../api/TagApi'
+    import ArticleApi from '../../../api/ArticleApi'
+    import { required, minLength, between,maxLength } from 'vuelidate/lib/validators'
+    const Service = new TagApi()
+    const Article = new ArticleApi()
+    export default {
+        name: 'index',
+        layout: 'Blog',
+        head: {
+            script: [
+                {
+                    src: 'https://cdn.bootcss.com/tinymce/4.7.4/tinymce.min.js'
+                }
+            ]
         },
-        markdown:"",
-        article: {
-          title: '',
-          content: '',
-          richType: 1,
-          abstract: '',
-          openComment: 1,
-          status: 2,
-          avatarUrl: '',
-          comments:[],
-          subtitle: '',
-          // articleType:"",
-          keyWords:"",
-          tags: []
-        },
-        tagList: store.state.tags,
-        paging,
-        isEditor:false
-      }
-    },
-    mounted () {
-      this.$nextTick(() => {
-        setTimeout(async ()=>{
-          this.tinymce = await tinymce.init({
-            selector: '#articleEditor',
-            branding: false,
-            elementpath: false,
-            height: 600,
-            language: 'zh_CN.GB2312',
-            language_url: '../../langs/zh_CN.GB2312.js',
-            menubar: 'edit insert view format table tools',
-            plugins: [
-              'advlist autolink lists link image charmap print preview hr anchor pagebreak imagetools',
-              'searchreplace visualblocks visualchars code fullscreen fullpage',
-              'insertdatetime media nonbreaking save table contextmenu directionality',
-              'emoticons paste textcolor colorpicker textpattern imagetools codesample'
-            ],
-            toolbar1: ' newnote print fullscreen preview | undo redo | insert | styleselect | forecolor backcolor bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image emoticons media codesample',
-            autosave_interval: '20s',
-            image_advtab: true,
-            table_default_styles: {
-              width: '100%',
-              borderCollapse: 'collapse'
+        async asyncData({store}) {
+            let paging = {
+                pageSize: 1,
+                pageNum: 10
             }
-          })
-        },50)
-      })
-    },
-    methods: {
-      async publish () {
-        this.article.content = tinymce.activeEditor.getContent()
-        let data = await Article.saveArticleApi({article: this.article})
-        console.info(data)
-      },
-      //新增标签
-      async saveTag () {
-        let data = await Service.addTag(this.tag)
-        if (data) {
-          this.visible = false
-          this.tagList.push(data)
-        }
+            await store.dispatch('queryTagList', {paging})
+            return {
+                visible: false,
+                tag: {
+                    name: '',
+                    orderId: null,
+                },
+                markdown: "",
+                article: {
+                    title: '',
+                    content: '',
+                    richType: 1,
+                    abstract: '',
+                    openComment: 1,
+                    status: 2,
+                    avatarUrl: '',
+                    comments: [],
+                    subtitle: '',
+                    // articleType:"",
+                    keyWords: "",
+                    tags: []
+                },
+                tagList: store.state.tags,
+                paging,
+                isEditor: false
+            }
+        },
+        validations:{
+            article:{
+                title:{
+                    required,
+                    minLength: minLength(4),
+                    maxLength:maxLength(40)
+                },
+                abstract:{
+                    required,
+                    minLength: minLength(4),
+                    maxLength:maxLength(40)
+                },
+                keyWords:{
+                    required,
+                    minLength: minLength(4),
+                    maxLength:maxLength(12)
+                }
+            }
+        },
+        methods: {
+            async initEdit() {
+                if (!this.tinymce) {
+                    this.$nextTick(() => {
+                        setTimeout(async () => {
+                            this.tinymce = await tinymce.init({
+                                selector: '#articleEditor',
+                                branding: false,
+                                elementpath: false,
+                                height: 600,
+                                language: 'zh_CN.GB2312',
+                                language_url: '../../langs/zh_CN.GB2312.js',
+                                menubar: 'edit insert view format table tools',
+                                plugins: [
+                                    'advlist autolink lists link image charmap print preview hr anchor pagebreak imagetools',
+                                    'searchreplace visualblocks visualchars code fullscreen fullpage',
+                                    'insertdatetime media nonbreaking save table contextmenu directionality',
+                                    'emoticons paste textcolor colorpicker textpattern imagetools codesample'
+                                ],
+                                toolbar1: ' newnote print fullscreen preview | undo redo | insert | styleselect | forecolor backcolor bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image emoticons media codesample',
+                                autosave_interval: '20s',
+                                image_advtab: true,
+                                table_default_styles: {
+                                    width: '100%',
+                                    borderCollapse: 'collapse'
+                                }
+                            })
+                        }, 20)
+                    })
 
-      },
-      selectTag (item) {
-        let len = this.article.tags.length - 1
-        for (let i = len; i > -1; i--) {
-          if (this.article.tags[i].name === item.name) {
-            return this.article.tags.splice(i, 1)
-          }
+                }
+
+            },
+            async publish() {
+                //如果是文本编辑器
+                if (this.isEditor) {
+                    this.article.content = tinymce.activeEditor.getContent()
+                }
+                let data = await Article.saveArticleApi({article: this.article})
+                console.info(data)
+            },
+            //新增标签
+            async saveTag() {
+                let data = await Service.addTag(this.tag)
+                if (data) {
+                    this.visible = false
+                    this.tagList.push(data)
+                }
+
+            },
+            selectTag(item) {
+                let len = this.article.tags.length - 1
+                for (let i = len; i > -1; i--) {
+                    if (this.article.tags[i].name === item.name) {
+                        return this.article.tags.splice(i, 1)
+                    }
+                }
+                this.article.tags.push(item)
+            },
+            includes(name) {
+                for (let i = 0; i < this.article.tags.length; i++) {
+                    if (this.article.tags[i].name === name) {
+                        return true
+                    }
+                }
+                return false
+            }
+        },
+        watch: {
+            isEditor(newVal) {
+                if (!newVal) {
+                    this.article.richType = 1
+                } else {
+                    this.article.richType = 2
+                    this.initEdit();
+                }
+            }
+        },
+        components: {
+            Model
         }
-        this.article.tags.push(item)
-      },
-      includes (name) {
-        for (let i = 0; i < this.article.tags.length; i++) {
-          if (this.article.tags[i].name === name) {
-            return true
-          }
-        }
-        return false
-      }
-    },
-    components: {
-      Model
     }
-  }
 </script>
 <style lang="stylus">
     .ui.dimmer
@@ -226,12 +265,14 @@
 <style scoped lang="stylus">
     .v-note-wrapper
         position static
+
     .addTag
         width 100%
+
     .publish
 
         .switch-mark-down
-            margin 0 0  1em
+            margin 0 0 1em
         .form
             label
                 text-align right

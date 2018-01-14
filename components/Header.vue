@@ -60,7 +60,7 @@
     .app-header
         height $app-hearder-h
         z-index 5
-        position fixed
+        position relative
         left 0
         top 0
         width 100%
