@@ -6,19 +6,21 @@
                 <nav role="navigation" class="app-nav">
                     <ul class="nav-lists" flex="dir:left">
                         <li class="nav-item nav-menu">
-                            <div class="phone-show-menu">
+                            <div class="phone-show-menu"  @click="addClassFun()">
                                 <span >首页</span>
                                 <i class="caret down icon"></i>
                             </div>
-                            <ul flex="dir:left" class="phone-hide show">
-                                <li>
-                                    <a href="">
-                                        首页
+
+
+                            <ul flex="dir:left" class="phone-hide" :class="{ show: isShow}">
+                                <li @click="addData()">
+                                    <a>
+                                        首页 {{num--}}
                                     </a>
                                 </li>
                                 <li>
                                     <a href="">
-                                        画册
+                                        画册{{num}}
                                     </a>
                                 </li>
                                 <li>
@@ -50,7 +52,21 @@
 
 <script>
     export default {
-        name: "header"
+        name: "header",
+        data() {
+            return {
+                isShow: false,
+                num:1
+            }
+        },
+        methods: {
+            addClassFun: function () {
+                this.isShow=!this.isShow;
+            },
+            addData: function () {
+                this.num++;
+            }
+        }
     }
 </script>
 
