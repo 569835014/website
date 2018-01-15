@@ -2,22 +2,21 @@
     <article class="publish">
         <div class="ui form ">
             <div class="inline fields">
-
                 <label>标题</label>
                 <input type="text" placeholder="文章标题" v-model="article.title">
-
+                <span class="error" v-if="$v.article.title.required">1</span>
+                <span class="error" v-else-if="$v.article.title.minLength">2</span>
+                <span class="error" v-else-if="$v.article.title.maxLength">3</span>
             </div>
             <div class="inline fields">
-
                 <label>摘要</label>
                 <input type="text" placeholder="文章摘要" v-model="article.abstract">
-
+                <span class="error"></span>
             </div>
             <div class="inline fields">
-
                 <label>关键词</label>
                 <input type="text" placeholder="seo关键词" v-model="article.keyWords">
-
+                <span class="error"></span>
             </div>
         </div>
         <div class="ui toggle checkbox switch-mark-down">
