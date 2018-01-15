@@ -13,14 +13,14 @@
 
 
                             <ul flex="dir:left" class="phone-hide" :class="{ show: isShow}">
-                                <li @click="addData()">
-                                    <a>
-                                        首页 {{num--}}
+                                <li>
+                                    <a href="">
+                                        首页
                                     </a>
                                 </li>
                                 <li>
                                     <a href="">
-                                        画册{{num}}
+                                        画册
                                     </a>
                                 </li>
                                 <li>
@@ -62,9 +62,6 @@
         methods: {
             addClassFun: function () {
                 this.isShow=!this.isShow;
-            },
-            addData: function () {
-                this.num++;
             }
         }
     }
