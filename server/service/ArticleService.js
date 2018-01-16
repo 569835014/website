@@ -32,7 +32,9 @@ class ArticleService extends Service {
   async queryById (id) {
     let data
     try {
-      data=await this.Model.findOne({_id:id}).exec();
+      data=await this.Model.findOne({_id:id})
+          .populate('tags')
+          .exec();
       if(!data) return this.abnormalResult(null,'文章不存在')
       return this.successResult(data, '查询成功')
     } catch (e) {
