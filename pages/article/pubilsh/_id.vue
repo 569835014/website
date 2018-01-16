@@ -1,10 +1,24 @@
 <template>
-    <div v-html="article.content" v-if="article.content">
+    <mavon-editor
+            v-if="article.richType===1"
+            :ishljs = "true"
+            language="cn"
+            :scrollStyle="true"
+            :toolbarsFlag="false"
+            :editable="false"
+            :subfield="false"
+            default_open="preview"
+            v-model="article.content"
+            :readmodel="true"
+    >
 
-    </div>
+    </mavon-editor>
+    <div class="" v-else v-html="article.content"></div>
 </template>
 
 <script>
+  import marked from 'marked'
+  import mark from 'mavon-editor'
   export default {
     layout: 'Blog',
     head(){
@@ -17,11 +31,20 @@
 
     },
     async asyncData({store,params}){
-      console.info(params)
+
       await store.dispatch('queryById', {id:params.id})
       return {
-        article:store.state.article
+        article:store.state.article,
+        html:""
       }
+    },
+    mounted(){
+      this.$nextTick(()=>{
+        console.info(this.article.tags)
+        // this.html= mark.mavonEditor.render(this.article.content)
+      })
+    },
+    computed:{
     }
   }
 </script>

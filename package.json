@@ -24,6 +24,7 @@
     "koa-session": "^5.5.0",
     "koa2-cors": "^2.0.3",
     "lodash": "^4.17.4",
+    "marked": "^0.3.12",
     "mavon-editor": "^2.4.14",
     "mongoose": "^4.12.3",
     "nuxt": "^1.0.0-rc3",
@@ -31,6 +32,7 @@
     "source-map-support": "^0.4.15",
     "tinymce": "^4.7.4",
     "vue-aplayer": "^0.1.1",
+    "vuelidate": "^0.6.1",
     "vuetify": "^0.17.3",
     "vuex": "^3.0.1"
   },
