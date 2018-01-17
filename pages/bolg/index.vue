@@ -130,7 +130,7 @@
         width 200px
         font-size 1.17rem !important
         font-weight normal !important
-        color #909090 !important
+        color #ccc !important
         display block
         -webkit-box-orient vertical
         -webkit-line-clamp 1
