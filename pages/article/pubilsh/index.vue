@@ -4,9 +4,7 @@
             <div class="inline fields">
                 <label>标题</label>
                 <input type="text" placeholder="文章标题" v-model="article.title">
-                <span class="error" v-if="$v.article.title.required">1</span>
-                <span class="error" v-else-if="$v.article.title.minLength">2</span>
-                <span class="error" v-else-if="$v.article.title.maxLength">3</span>
+
             </div>
             <div class="inline fields">
                 <label>摘要</label>
