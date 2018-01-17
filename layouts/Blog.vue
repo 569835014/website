@@ -41,7 +41,7 @@
               <!--</nav>-->
           <!--</header>-->
       <!--</article>-->
-        <myHeader></myHeader>
+        <blog-header></blog-header>
       <main class="ui container">
 
           <nuxt></nuxt>
@@ -53,10 +53,10 @@
 <script>
 
   import Nuxt from '../.nuxt/components/nuxt'
-  import header from '../components/Header'
+  import BlogHeader from '../components/BlogHeader'
   export default {
     components: {
-        "myHeader": header,
+        BlogHeader,
         Nuxt
     },
     data: () => ({

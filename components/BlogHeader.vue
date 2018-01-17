@@ -35,7 +35,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item search">
+                        <li class="nav-item search" flex="cross:center">
                             <form action="" class="ui form">
                                 <div class="ui icon input">
                                     <input type="text" placeholder="搜索文章">
@@ -52,11 +52,9 @@
 
 <script>
     export default {
-        name: "header",
         data() {
             return {
-                isShow: false,
-                num:1
+                isShow: false
             }
         },
         methods: {
@@ -72,9 +70,11 @@
     //app头部
     .app-header
         width 100%
+        height $app-hearder-h
         .main-header
             z-index 5
             width 100%
+            height $app-hearder-h
             position fixed
             left 0
             top 0
@@ -85,23 +85,21 @@
             .container
                 max-width 1127px
                 margin 0 auto
+                height: 100%;
                 .app-nav
+                    height: 100%;
                     .nav-lists
-                        .nav-item
+                        height: 100%;
+                        a
+                            display block
                             line-height $app-hearder-h
-                            .nav-menu li
-                                background blue
-                            a
-                                display block
-                                line-height $app-hearder-h
-                                padding 0 20px
-                                font-size $app-lg-font
-                                text-align center
-                        .nav-menu
-                            .phone-show-menu
-                                cursor pointer
-                                display none
+                            padding 0 20px
+                            font-size $app-lg-font
+                            text-align center
                         .search
                             margin-left 100px
+        .phone-show-menu
+            cursor pointer
+            display none
     @import "../static/stylus/media.styl"
 </style>
