@@ -1,24 +1,14 @@
+@import "../stylus/style.styl"
 @media (max-width: 980px)
   .app-header
-    .container
-      width 96%
-      .app-nav
-        .nav-lists
-          background-color: #fff
-          .nav-item
-          .nav-menu
-            display block
-            position absolute
-            left 0
-            top 0
-            background-color #fff
-            .phone-show-menu
-              color #007fff
-              font-size 1.3rem
-              -webkit-box-pack center
-              -ms-flex-pack center
-              justify-content center
-              padding 0 2rem
+    .main-header
+      .container
+        width 96%
+        .app-nav
+          .nav-lists
+            background-color: #fff
+            .search
+              margin-left 0
             .phone-hide
               display none
               background-color #fff
@@ -28,3 +18,27 @@
               font-size 1.2rem
             .phone-hide.show
               display block
+          /*.nav-menu
+            display block
+            position absolute
+            left 0
+            top 0
+            background-color #fff*/
+    .phone-show-menu
+      height 60px
+      display -webkit-box
+      display -ms-flexbox
+      display flex
+      -webkit-box-align center
+      -ms-flex-align center
+      align-items center
+      color #007fff
+      font-size 1.3rem
+      -webkit-box-pack center
+      -ms-flex-pack center
+      justify-content center
+      padding 0 2rem
+    .phone-show-menu i.icon
+      height 2rem
+  .main-right
+    display none
