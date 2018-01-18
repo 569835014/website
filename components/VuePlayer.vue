@@ -109,3 +109,14 @@
 
 
 </script>
+
+<style scoped lang="stylus">
+    .aplayer
+        width 100%
+        margin 0
+        margin-top 30px
+        -webkit-box-shadow 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5
+        box-shadow 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5
+        border-radius 0.3rem
+        background #fff
+</style>
