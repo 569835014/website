@@ -29,6 +29,9 @@ module.exports = {
             src: '~plugins/mavonEdit', ssr: false
         },
         {
+            src: '~plugins/aplayer.js', ssr: false
+        },
+        {
             src: '~plugins/vuelidate.js', ssr: false
         }
     ],
