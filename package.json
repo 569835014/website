@@ -12,6 +12,7 @@
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore ."
   },
   "dependencies": {
+    "aplayer": "^1.6.0",
     "axios": "^0.17.1",
     "babel": "^6.23.0",
     "babel-loader": "^7.1.2",
@@ -36,7 +37,6 @@
     "ramda": "^0.25.0",
     "source-map-support": "^0.4.15",
     "tinymce": "^4.7.4",
-    "vue-aplayer": "^0.1.1",
     "vuelidate": "^0.6.1",
     "vuetify": "^0.17.3",
     "vuex": "^3.0.1"

@@ -65,7 +65,6 @@ class Api {
         }
 
     }
-
     all(params) {
         let arr = [];
         let _this = this;
