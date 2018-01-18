@@ -39,7 +39,7 @@
         },
         async asyncData({store, params}) {
             await store.dispatch('queryById', {id: params.id})
-            let tagNames = R.pluck('name')(store.state.article.tags)
+            let tagNames =[]
             return {
                 article: store.state.article,
                 html: "",

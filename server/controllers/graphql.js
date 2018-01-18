@@ -7,7 +7,7 @@ export class GraphqlController{
     @post('/graphql')
     async postGraphql(ctx,next){
         await graphqlKoa({
-            schema:schema
+            schema:""
         })(ctx,next)
     }
 
