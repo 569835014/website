@@ -74,12 +74,13 @@
                          :narrow="false"
                          theme='#ad7a86'
                          mode='random'
-                         listmaxheight='80px'
+                         listmaxheight='300px'
                          ></aplayer>
             </article>
         </div>
 
     </section>
+
 
 </template>
 
@@ -125,17 +126,17 @@
             }
         },
         components: {
-            'aplayer':Aplayer
+            'aplayer': Aplayer
         }
     }
 </script>
 
 <style scoped lang="stylus">
     @import "../../static/stylus/style.styl"
+
     .main-right
         width 340px;
         padding-left 20px
-
     .articles
         width 100%
         .article-item
@@ -160,7 +161,7 @@
         margin-top 0
 
     .new-article-list-con
-
+        background #fff
         -webkit-box-shadow 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5
         box-shadow 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5
         border-radius 0.3rem
@@ -181,6 +182,5 @@
         white-space nowrap
         text-overflow ellipsis
         overflow hidden
-
     @import "../../static/stylus/media.styl"
 </style>
