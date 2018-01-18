@@ -46,34 +46,24 @@
                   <h3 class="ui header blue hotHeader">最热排行榜</h3>
                   <div class="ui items">
                       <div class="item">
-                          <div class="middle aligned content" flex="dir:left">
-                              <i class="remove bookmark icon red"></i>
-                              <a class="header">12 Years a Slave</a>
-                          </div>
+                          <i class="remove bookmark icon red" flex="cross:center"></i>
+                          <a class="header" flex="cross:center">12 Years a Slave</a>
                       </div>
                       <div class="item">
-                          <div class="middle aligned content" flex="dir:left">
-                              <i class="remove bookmark icon orange"></i>
-                              <a class="header">My Neighbor Totoro</a>
-                          </div>
+                          <i class="remove bookmark icon orange" flex="cross:center"></i>
+                          <a class="header" flex="cross:center">My Neighbor Totoro</a>
                       </div>
                       <div class="item">
-                          <div class="middle aligned content" flex="dir:left">
-                              <i class="remove bookmark icon green"></i>
-                              <a class="header">Watchmen</a>
-                          </div>
+                          <i class="remove bookmark icon green" flex="cross:center"></i>
+                          <a class="header" flex="cross:center">Watchmen</a>
                       </div>
                       <div class="item">
-                          <div class="middle aligned content" flex="dir:left">
-                              <i class="remove bookmark icon green"></i>
-                              <a class="header">你好你好你好你好你好你好你好你好你好你好你好你好</a>
-                          </div>
+                          <i class="remove bookmark icon green" flex="cross:center"></i>
+                          <a class="header" flex="cross:center">你好你好你好你好你好你好你好你好你好你好你好你好</a>
                       </div>
                       <div class="item">
-                          <div class="middle aligned content">
-                              <i class="remove bookmark icon green"></i>
-                              <a class="header">Watchmen</a>
-                          </div>
+                          <i class="remove bookmark icon green" flex="cross:center"></i>
+                          <a class="header" flex="cross:center">Watchmen</a>
                       </div>
                   </div>
               </div>
@@ -128,6 +118,7 @@
     .ui.header:first-child
         margin-top 0
     .new-article-list-con
+
         -webkit-box-shadow 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5
         box-shadow 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5
         border-radius 0.3rem
@@ -137,8 +128,15 @@
             .bookmark
                 font-size 1.3rem
     .new-article-list-con .item a.header
+        width 200px
         font-size 1.17rem !important
         font-weight normal !important
-        color #909090 !important
+        color rgba(0, 0, 0, .4) !important
+        display block
+        -webkit-box-orient vertical
+        -webkit-line-clamp 1
+        white-space nowrap
+        text-overflow ellipsis
+        overflow hidden
     @import "../../static/stylus/media.styl"
 </style>
