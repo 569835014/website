@@ -118,6 +118,7 @@
     .ui.header:first-child
         margin-top 0
     .new-article-list-con
+
         -webkit-box-shadow 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5
         box-shadow 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5
         border-radius 0.3rem
