@@ -23,8 +23,8 @@
 <script>
     import marked from 'marked'
     import mark from 'mavon-editor'
-    import R from 'ramda'
-
+    // import R from 'ramda'
+    const R=require('ramda')
     export default {
         layout: 'Blog',
         head() {

@@ -84,6 +84,7 @@
             </div>
             </Col>
         </Row>
+
         <model :visible.sync="visible" @confirm="saveTag">
             <form class="ui form addTag" ref="tags">
                 <div class="field">
