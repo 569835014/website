@@ -1,13 +1,9 @@
 class ValiForm{
     static builtIn={
-        emil:{
-            rule:[],
-            msg:"输入的邮箱格式不正确",
-            join:""
-        },
-        idCard:{},
-        phone:{},
-        acction:{}
+        emil:'',
+        idCard:'',
+        phone:'',
+        acction:''
     }
     constructor(rules){
         this.builtIn=Object.assign({},ValiForm.builtIn,rules)
@@ -30,17 +26,84 @@ class ValiForm{
         }
     }
 
-    /************
+    /*****
      * 验证单个表单字段
+     * @param key
      * @param Field
      * type:内置类型
      * rule:自定义规则
-     * msg:错误信息
      * value:待验证字段的值
      * join:连接符 and 或者 or
      */
     valiField(Field){
+        let rules=Field.rules;
+        let len=rules.length;
+        let flag=false;
+        if(rules.join==='and'){
+            for(let i=0;i<len;i++){
+                let item=rules[i];
+                switch (item.type){
+                    case 'patter':
+                        flag=this.valiRegArr(Field.value,item.rule);
+                        break
+                }
+                if(!flag){
+                    return {
+                        success:false,
+                        msg:item.msg
+                    }
+                }
+            }
+            return {
+                success:true
+            }
+        }else{
+            let res={
+                success:true,
+                msg:''
+            }
+            for(let i=0;i<len;i++){
+                let item=rules[i];
+                switch (item.type){
+                    case 'patter':
+                        flag=this.valiRegArr(Field.value,item.rule);
+                        break
+                }
+                if(flag){
+                    return {
+                        success:true,
+                        msg:item.msg
+                    }
+                }else{
+                    res={
+                        success:flag,
+                        msg:item.msg
+                    }
+                }
+            }
+            return res
+        }
+    }
 
+    /*****
+     *
+     * @param str
+     * @param patter
+     * @param join
+     * @returns {*}
+     */
+    valiRegArr(str,patter,join){
+        if(patter.indexOf(',')<0){
+            return this.valiReg(str,patter)
+        }
+        let patterArr=patter.split(',');
+        let len=patterArr.length;
+        if(join==='and'){
+            for(let i=0;i<len;i++){
+                if(this.valiReg(str,patterArr[i])) return false
+            }
+            return true
+        }
     }
     valiReg(str,reg){
         return reg.test(str)
