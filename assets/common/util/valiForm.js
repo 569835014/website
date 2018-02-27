@@ -6,6 +6,11 @@ class ValiForm{
         acction:''
     }
     constructor(rules){
+        //内置验证函数
+        this.inFun={
+            minLength(str,boundary){},
+            maxLength(str,boundary){}
+        }
         this.builtIn=Object.assign({},ValiForm.builtIn,rules)
     }
     form(data,only=false){
@@ -13,16 +18,30 @@ class ValiForm{
         if(only) return this.isOnlyModel(keys,data);
         return this.unOnlyModel(keys,data);
     }
-    field(){
-
+    unOnlyModel(keys,data){
+        let res={}
+        let len=keys.length;
+        for(let i=0;i<len;i++){
+            let key=keys[i]
+            let item=data[key];
+            let result=this.valiField(item)
+            if(!res.success){
+                res[key]=result
+            }
+        }
+        return res
     }
-    //
-    unOnlyModel(keys,data){}
     isOnlyModel(keys,data){
         let len=keys.length;
         for(let i=0;i<len;i++){
-            let item=data[i];
-
+            let key=keys[i]
+            let item=data[key];
+            let res=this.valiField(item)
+            if(!res.success){
+                return {
+                    [key]:res
+                }
+            }
         }
     }
 
@@ -107,6 +126,23 @@ class ValiForm{
     }
     valiReg(str,reg){
         return reg.test(str)
+    }
+
+    /****
+     * 例如 minLength(4),maxLength(8),between(4,5) 这种字符串函数
+     * 提取括号里面的内容
+     * @param str
+     */
+    extract(str){
+        let regex="\\((.+?)\\)";
+        let  arr=str.match(regex);
+        if(arr.length>1){
+            if(arr[1].indexOf(',')>0){
+                return arr[1].split(',')
+            }
+            return arr[1]
+        }
+        return null
     }
 
 }
