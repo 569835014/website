@@ -108,7 +108,8 @@
     import Model from '../../../components/Model'
     import TagApi from '../../../api/TagApi'
     import ArticleApi from '../../../api/ArticleApi'
-    import { required, minLength, between,maxLength } from 'vuelidate/lib/validators'
+    import valiForm from '~/assets/common/util/valiForm.js'
+    let vali=new valiForm();
     const Service = new TagApi()
     const Article = new ArticleApi()
     export default {
@@ -153,25 +154,6 @@
                 isEditor: false
             }
         },
-        validations:{
-            article:{
-                title:{
-                    required,
-                    minLength: minLength(4),
-                    maxLength:maxLength(40)
-                },
-                abstract:{
-                    required,
-                    minLength: minLength(4),
-                    maxLength:maxLength(40)
-                },
-                keyWords:{
-                    required,
-                    minLength: minLength(4),
-                    maxLength:maxLength(12)
-                }
-            }
-        },
         methods: {
             async initEdit() {
                 if (!this.tinymce) {
@@ -206,12 +188,36 @@
 
             },
             async publish() {
+                let res=vali.form({
+                    title:{
+                        rules:[
+                            {
+                                type:'inFun',
+                                rule:'required',
+                                msg:'标题不能为空！'
+                            },
+                            {
+                                type:'patter',
+                                rule:'email',
+                                msg:'邮箱格式不正确！'
+                            },
+                            {
+                                type:'inFun',
+                                rule:'minLength(20)',
+                                msg:'最小不得小于20长度！'
+                            },
+                        ] ,
+                        value:this.article.title,
+                        join:'or'
+                    }
+                })
+                console.info(res);
                 //如果是文本编辑器
-                if (this.isEditor) {
-                    this.article.content = tinymce.activeEditor.getContent()
-                }
-                let data = await Article.saveArticleApi({article: this.article})
-                console.info(data)
+                // if (this.isEditor) {
+                //     this.article.content = tinymce.activeEditor.getContent()
+                // }
+                // let data = await Article.saveArticleApi({article: this.article})
+                // console.info(data)
             },
             //新增标签
             async saveTag() {
