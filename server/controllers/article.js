@@ -23,4 +23,10 @@ export class ArticleContorller{
     let{id}=ctx.request.body;
     return ctx.body=await Service.queryById(id)
   }
+  @post('link')
+  @required({body:['id']})
+  async linkArticle(ctx,next){
+      let{id}=ctx.request.body;
+      const ip = ctx.ip.replace('::ffff:', '')
+  }
 }

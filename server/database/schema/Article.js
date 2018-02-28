@@ -27,6 +27,7 @@ class Article extends BaseSchema{
           ref: "Comment"
         }
       ],
+      likesIP:[],
       like:{
         type:Number,
         default:0

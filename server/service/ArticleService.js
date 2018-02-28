@@ -41,6 +41,17 @@ class ArticleService extends Service {
       return this.errorResult(e)
     }
   }
+  async linkArticle(id,ip){
+      let data
+      try {
+          data=await this.Model.findOne({_id:id})
+              .exec();
+          if(!data) return this.abnormalResult(null,'文章不存在')
+          return this.successResult(data, '查询成功')
+      } catch (e) {
+          return this.errorResult(e)
+      }
+  }
 }
 
 const service = new ArticleService()

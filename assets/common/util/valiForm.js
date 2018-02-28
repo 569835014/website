@@ -125,7 +125,6 @@ class ValiForm{
                 if(flag){
                     return {
                         success:true,
-                        msg:item.msg
                     }
                 }else{
                     res={
