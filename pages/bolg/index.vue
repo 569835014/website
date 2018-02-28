@@ -70,6 +70,7 @@
                 <aplayer autoplay
                          :music="music"
                          :autoplay="false"
+                         :showlrc="3"
                          :mutex="true"
                          :narrow="false"
                          theme='#ad7a86'

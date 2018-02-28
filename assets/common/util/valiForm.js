@@ -8,8 +8,19 @@ class ValiForm{
     constructor(rules){
         //内置验证函数
         this.inFun={
-            minLength(str,boundary){},
-            maxLength(str,boundary){}
+            //最小长度
+            minLength(val,boundary){
+                if(val.length<boundary) return false
+                return true
+            },
+            //最大长度
+            maxLength(val,boundary){
+                if(val.length>boundary) return false
+                return true
+            },
+            between(val,...arg){
+
+            }
         }
         this.builtIn=Object.assign({},ValiForm.builtIn,rules)
     }
@@ -44,6 +55,10 @@ class ValiForm{
             }
         }
     }
+    //验证单个属性单个规则是否合法（and）
+    isOnlyRule(){}
+    //验证单个属性单个规则是否合法（or）
+    unOnlyRule(){}
 
     /*****
      * 验证单个表单字段
@@ -86,7 +101,9 @@ class ValiForm{
                 switch (item.type){
                     case 'patter':
                         flag=this.valiRegArr(Field.value,item.rule);
-                        break
+                        break;
+                    case 'inFun':
+
                 }
                 if(flag){
                     return {
