@@ -47,7 +47,7 @@ class ArticleService extends Service {
           data=await this.Model.findOne({_id:id})
               .exec();
           if(!data) return this.abnormalResult(null,'文章不存在')
-          return this.successResult(data, '查询成功')
+           return this.successResult(data, '查询成功')
       } catch (e) {
           return this.errorResult(e)
       }
