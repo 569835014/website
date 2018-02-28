@@ -47,6 +47,14 @@ class ArticleService extends Service {
           data=await this.Model.findOne({_id:id})
               .exec();
           if(!data) return this.abnormalResult(null,'文章不存在')
+          else{
+              if(data.likesIP.includes(ip)){
+                  return this.abnormalResult(null,'您已经点过赞了')
+              }
+              data.likesIP.push(ip);
+              data.like+=1;
+              data.update();
+          }
            return this.successResult(data, '查询成功')
       } catch (e) {
           return this.errorResult(e)
