@@ -18,7 +18,7 @@
 
                     </div>
                     <div class="extra content">
-                        <div class="left floated" @click="like(item._id)">
+                        <div class="left floated" @click="like(item._id,index,item)">
                             <div class="ui labeled button" tabindex="0">
                                 <div class="ui red button button-icon"><i class="heart icon"></i></div>
                                 <a class="ui basic red left pointing label" >
@@ -125,9 +125,11 @@
             }
         },
         methods:{
-            async like(_id){
+            async like(_id,index,item){
                 let res=await linkArticel(_id)
-                console.info(res)
+                if(res){
+                    item.like=res.like
+                }
             }
         },
         components: {

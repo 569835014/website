@@ -46,7 +46,6 @@ class Api {
         let res = await axios(param.url, _config);
         let result=await Rrocessing.proceResult(param,res.data);
         return new Promise((r)=>{
-            console.info(res.data.data)
             if(result) r(res.data.data)
            else r(false)
         })
