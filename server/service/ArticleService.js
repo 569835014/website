@@ -43,20 +43,29 @@ class ArticleService extends Service {
   }
   async linkArticle(id,ip){
       let data
+      let msg='点赞成功'
       try {
           data=await this.Model.findOne({_id:id})
               .exec();
+
           if(!data) return this.abnormalResult(null,'文章不存在')
           else{
-              console.info(data.likesIP)
-              if(data.likesIP.includes(ip)){
-                  return this.abnormalResult(null,'您已经点过赞了')
+              console.info(data.likesIP.indexOf(ip))
+              let index=data.likesIP.indexOf(ip);
+
+
+              if(index>-1){
+                  data.likesIP.splice(index,1);
+                  data.like-=1;
+                  msg='取消成功'
+              }else{
+                  data.likesIP.push(ip);
+                  data.like+=1;
               }
-              data.likesIP.push(ip);
-              data.like+=1;
+
               data.save();
           }
-           return this.successResult({like:data.like}, '点赞成功')
+           return this.successResult({like:data.like}, msg)
       } catch (e) {
           return this.errorResult(e)
       }
