@@ -37,6 +37,7 @@ class Service{
     return this.result
   }
   successResult(data,message='操作成功'){
+    console.info(data)
     this.result={
       state:CODE.SUCCESS,
       data:data,

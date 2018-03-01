@@ -22,5 +22,11 @@ class ArticleApi extends Api{
       data:params
     })
   }
+  async linkArticle(params){
+      return await this.common({
+          url:'/article/link',
+          data:params
+      })
+  }
 }
 export default ArticleApi

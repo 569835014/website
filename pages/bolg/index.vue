@@ -18,10 +18,10 @@
 
                     </div>
                     <div class="extra content">
-                        <div class="left floated">
+                        <div class="left floated" @click="like(item._id)">
                             <div class="ui labeled button" tabindex="0">
                                 <div class="ui red button button-icon"><i class="heart icon"></i></div>
-                                <a class="ui basic red left pointing label">
+                                <a class="ui basic red left pointing label" >
                                     {{item.like+400}}
                                 </a>
                             </div>
@@ -86,9 +86,7 @@
 </template>
 
 <script>
-    import ArticleApi from '../../api/ArticleApi'
-
-    const Article = new ArticleApi()
+    import {linkArticel} from "../../assets/ajax/articleAjax";
     import Aplayer from '../../components/VuePlayer'
 
     export default {
@@ -124,6 +122,12 @@
                         lrc: 'https://moeplayer.b0.upaiyun.com/aplayer/snowmoonflowers.lrc'
                     }
                 ]
+            }
+        },
+        methods:{
+            async like(_id){
+                let res=await linkArticel(_id)
+                console.info(res)
             }
         },
         components: {

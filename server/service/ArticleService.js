@@ -48,14 +48,15 @@ class ArticleService extends Service {
               .exec();
           if(!data) return this.abnormalResult(null,'文章不存在')
           else{
+              console.info(data.likesIP)
               if(data.likesIP.includes(ip)){
                   return this.abnormalResult(null,'您已经点过赞了')
               }
               data.likesIP.push(ip);
               data.like+=1;
-              data.update();
+              data.save();
           }
-           return this.successResult(data, '查询成功')
+           return this.successResult({like:data.like}, '点赞成功')
       } catch (e) {
           return this.errorResult(e)
       }
