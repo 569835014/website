@@ -50,10 +50,7 @@ class ArticleService extends Service {
 
           if(!data) return this.abnormalResult(null,'文章不存在')
           else{
-              console.info(data.likesIP.indexOf(ip))
               let index=data.likesIP.indexOf(ip);
-
-
               if(index>-1){
                   data.likesIP.splice(index,1);
                   data.like-=1;

@@ -41,6 +41,7 @@ class Api {
 
     //通用api
     async common(param) {
+        console.info(param)
         let _config = this.configure(param);
         await this.before();//等待请求前的操作完成
         let res = await axios(param.url, _config);
