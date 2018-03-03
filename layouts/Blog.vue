@@ -104,6 +104,7 @@
     @import "../static/stylus/style.styl"
     #app
         font-size $app-md-font
+        background white
         //app头部
         .app-header
             height $app-hearder-h

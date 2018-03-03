@@ -55,7 +55,16 @@
         computed: {}
     }
 </script>
+<style lang="stylus">
+    .article-content
+        .v-note-panel
+            box-shadow unset !important
+            .v-show-content
+                background white !important
+                padding 15px 0  15px !important
 
+
+</style>
 <style lang="stylus" scoped>
     .article-content
         .article-title
@@ -65,4 +74,9 @@
             line-height: 1.3;
         .v-note-wrapper
             box-shadow none
+            position unset
+            background white
+
+
+
 </style>

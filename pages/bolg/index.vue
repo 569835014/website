@@ -17,7 +17,7 @@
                         </nuxt-link>
 
                     </div>
-                    <div class="extra content">
+                    <div class="extra content" >
                         <div class="left floated" @click="like(item._id,index,item)">
                             <div class="ui labeled button" tabindex="0">
                                 <div class="ui red button button-icon"><i class="heart icon"></i></div>
@@ -31,11 +31,15 @@
                                     {{item.share+300}}
                                 </a>
                             </div>
+
                         </div>
-                        <div class="right floated author">
-                            <img class="ui avatar image" src="http://www.semantic-ui.cn/images/avatar/small/matt.jpg">
-                            Matt
+                        <div class="right floated " flex="cross:center">
+                            <div class="author">
+                                <img class="ui avatar image" src="http://www.semantic-ui.cn/images/avatar/small/matt.jpg">
+                                Matt
+                            </div>
                         </div>
+
                     </div>
 
 
@@ -159,6 +163,9 @@
             .article-label
                 left -1.2em
                 max-width 100px
+            .author
+                height 36px
+                line-height 36px
 
     .hotHeader
         padding 7px 10px
