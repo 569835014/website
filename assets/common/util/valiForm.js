@@ -38,7 +38,7 @@ class ValiForm{
         }
         this.builtIn=Object.assign({},this.builtIn,rules)
     }
-    form(data,only=false){
+    form(data,only=true){
         let keys=Object.keys(data)
         if(only) return this.isOnlyModel(keys,data);
         return this.unOnlyModel(keys,data);
@@ -46,14 +46,19 @@ class ValiForm{
     unOnlyModel(keys,data){
         let res={}
         let len=keys.length;
+        let flag=false
         for(let i=0;i<len;i++){
             let key=keys[i]
             let item=data[key];
             let result=this.valiField(item)
             if(!res.success){
                 res[key]=result
+            }else{
+                flag=true
             }
         }
+        res.adopt=flag
+
         return res
     }
     isOnlyModel(keys,data){
@@ -64,9 +69,13 @@ class ValiForm{
             let res=this.valiField(item)
             if(!res.success){
                 return {
-                    [key]:res
+                    [key]:res,
+                    adopt:false
                 }
             }
+        }
+        return {
+            adopt:true
         }
     }
     //验证单个属性单个规则是否合法（and）

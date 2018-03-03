@@ -387,7 +387,7 @@
                             },
                         ] ,
                         value:this.article.title,
-                        join:'or'
+                        join:'and'
                     },
                     content:{
                         rules:[
@@ -400,7 +400,7 @@
                         value:this.article.content,
                         join:'or'
                     }
-                })
+                });
                 console.info(res);
                 //如果是文本编辑器
                 // if (this.isEditor) {
