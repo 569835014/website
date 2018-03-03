@@ -3,8 +3,9 @@
         <div class="ui form ">
             <div class="inline fields">
                 <label>标题</label>
-                <div class="ui input field  form-field">
+                <div class="ui input field  form-field" :class="{'error':valResult.title}">
                     <input type="text" placeholder="文章标题" v-model="article.title">
+                    <div v-if="valResult.title" class="error">{{valResult.title.msg}}</div>
                 </div>
 
             </div>
@@ -339,7 +340,8 @@
                 },
                 tagList: store.state.tags,
                 paging,
-                isEditor: false
+                isEditor: false,
+                valResult:{}
             }
         },
         methods: {
@@ -376,7 +378,7 @@
 
             },
             async publish() {
-                let res=valiForm.form({
+                this.valResult=valiForm.form({
                     title:{
                         rules:[
                             {
@@ -406,7 +408,6 @@
                         join:'or'
                     }
                 });
-                console.info(res);
                 //如果是文本编辑器
                 // if (this.isEditor) {
                 //     this.article.content = tinymce.activeEditor.getContent()
