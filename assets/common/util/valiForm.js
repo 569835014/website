@@ -1,6 +1,12 @@
 class ValiForm{
 
 
+    static created(rules){
+        if(!ValiForm.instance){
+            ValiForm.instance=new ValiForm(rules)
+        }
+        return ValiForm.instance
+    }
     constructor(rules){
         //内置验证函数
          this.builtIn={
@@ -224,5 +230,5 @@ class ValiForm{
     }
 
 }
-
+ValiForm.instance=null
 export default ValiForm

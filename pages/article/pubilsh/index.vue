@@ -108,8 +108,8 @@
     import Model from '../../../components/Model'
     import TagApi from '../../../api/TagApi'
     import ArticleApi from '../../../api/ArticleApi'
-    import valiForm from '~/assets/common/util/valiForm.js'
-    let vali=new valiForm();
+    import ValiForm from '~/assets/common/util/valiForm.js'
+    let valiForm=ValiForm.created();
     const Service = new TagApi()
     const Article = new ArticleApi()
     export default {
@@ -371,7 +371,7 @@
 
             },
             async publish() {
-                let res=vali.form({
+                let res=valiForm.form({
                     title:{
                         rules:[
                             {
@@ -379,18 +379,25 @@
                                 rule:'required',
                                 msg:'标题不能为空！'
                             },
-                            {
-                                type:'patter',
-                                rule:'email',
-                                msg:'邮箱格式不正确！'
-                            },
+
                             {
                                 type:'inFun',
-                                rule:'minLength(20)',
-                                msg:'最小不得小于20长度！'
+                                rule:'maxLength(40)',
+                                msg:'最大长度不能超过40个字符'
                             },
                         ] ,
                         value:this.article.title,
+                        join:'or'
+                    },
+                    content:{
+                        rules:[
+                            {
+                                type:'inFun',
+                                rule:'required',
+                                msg:'标题不能为空！'
+                            }
+                        ] ,
+                        value:this.article.content,
                         join:'or'
                     }
                 })
