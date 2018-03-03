@@ -46,6 +46,7 @@
 
           <nuxt></nuxt>
       </main>
+
   </section>
 
 </template>

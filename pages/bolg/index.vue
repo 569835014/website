@@ -83,7 +83,15 @@
                          ></aplayer>
             </article>
         </div>
+        <div class="write">
 
+            <router-link :to="{path:'/article/pubilsh'}">
+                <button class="ui circular primary  icon button">
+                    <i class="plus icon"></i>
+                </button>
+            </router-link>
+
+        </div>
     </section>
 
 
@@ -144,7 +152,10 @@
 
 <style scoped lang="stylus">
     @import "../../static/stylus/style.styl"
-
+    .write
+        position fixed
+        right 20px
+        bottom 20px
     .main-right
         width 340px;
         padding-left 20px
