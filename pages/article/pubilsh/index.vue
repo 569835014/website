@@ -3,18 +3,23 @@
         <div class="ui form ">
             <div class="inline fields">
                 <label>标题</label>
-                <input type="text" placeholder="文章标题" v-model="article.title">
+                <div class="ui input field  form-field">
+                    <input type="text" placeholder="文章标题" v-model="article.title">
+                </div>
 
             </div>
             <div class="inline fields">
                 <label>摘要</label>
-                <input type="text" placeholder="文章摘要" v-model="article.abstract">
-                <span class="error"></span>
+                <div class="ui input field  form-field">
+                    <input type="text" placeholder="文章摘要" v-model="article.abstract">
+                </div>
+
             </div>
             <div class="inline fields">
                 <label>关键词</label>
-                <input type="text" placeholder="seo关键词" v-model="article.keyWords">
-                <span class="error"></span>
+                <div class="ui input field  form-field">
+                    <input type="text" placeholder="搜索关键词" v-model="article.keyWords">
+                </div>
             </div>
         </div>
         <div class="ui toggle checkbox switch-mark-down">
@@ -468,6 +473,8 @@
         .switch-mark-down
             margin 0 0 1em
         .form
+            .form-field
+                width calc(100% - 50px)
             label
                 text-align right
                 width 50px !important
