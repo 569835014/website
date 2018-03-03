@@ -38,7 +38,7 @@ class ValiForm{
         }
         this.builtIn=Object.assign({},this.builtIn,rules)
     }
-    form(data,only=true){
+    form(data,only=false){
         let keys=Object.keys(data)
         if(only) return this.isOnlyModel(keys,data);
         return this.unOnlyModel(keys,data);
@@ -51,7 +51,7 @@ class ValiForm{
             let key=keys[i]
             let item=data[key];
             let result=this.valiField(item)
-            if(!res.success){
+            if(!result.success){
                 res[key]=result
             }else{
                 flag=true
