@@ -1,26 +1,38 @@
 <template>
     <article class="publish">
         <div class="ui form ">
-            <div class="inline fields">
-                <label>标题</label>
-                <div class="ui input field  form-field" :class="{'error':valResult.title}">
-                    <input type="text" placeholder="文章标题" v-model="article.title" @change="validateField('title')">
+            <div class="form-item">
+                <div class="inline fields">
+                    <label>标题</label>
+                    <div class="ui input field  form-field" :class="{'error':valResult.title}">
+                        <input type="text" placeholder="文章标题" v-model="article.title" @change="validateField('title')">
+
+                    </div>
 
                 </div>
-
-            </div>
-            <div v-if="valResult.title" class="error valimsg">{{valResult.title.msg}}</div>
-            <div class="inline fields">
-                <label>摘要</label>
-                <div class="ui input field  form-field">
-                    <input type="text" placeholder="文章摘要" v-model="article.abstract">
+                <div class="error-msg">
+                    <div v-if="valResult.title" class="valimsg">{{valResult.title.msg}}</div>
                 </div>
-
             </div>
-            <div class="inline fields">
-                <label>关键词</label>
-                <div class="ui input field  form-field">
-                    <input type="text" placeholder="搜索关键词" v-model="article.keyWords">
+            <div class="form-item">
+                <div class="inline fields">
+                    <label>摘要</label>
+                    <div class="ui input field  form-field">
+                        <input type="text" placeholder="文章摘要" v-model="article.abstract">
+                    </div>
+
+                </div>
+                <div class="error-msg">
+                </div>
+            </div>
+            <div class="form-item">
+                <div class="inline fields">
+                    <label>关键词</label>
+                    <div class="ui input field  form-field">
+                        <input type="text" placeholder="搜索关键词" v-model="article.keyWords">
+                    </div>
+                </div>
+                <div class="error-msg">
                 </div>
             </div>
         </div>
@@ -519,8 +531,16 @@
             margin 0 0 1em
         .form
             .valimsg
+                font-size 12px
                 display block
                 color: #9f3a38;
+            .form-item
+                .fields
+                    margin-bottom 0px
+                .error-msg
+                    padding-left 61px
+                    height 16px
+                    margin-bottom 10px
             .form-field
                 width calc(100% - 50px)
             label
