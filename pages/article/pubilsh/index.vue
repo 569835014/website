@@ -5,10 +5,11 @@
                 <label>标题</label>
                 <div class="ui input field  form-field" :class="{'error':valResult.title}">
                     <input type="text" placeholder="文章标题" v-model="article.title" @change="validateField('title')">
-                    <div v-if="valResult.title" class="error">{{valResult.title.msg}}</div>
+
                 </div>
 
             </div>
+            <div v-if="valResult.title" class="error valimsg">{{valResult.title.msg}}</div>
             <div class="inline fields">
                 <label>摘要</label>
                 <div class="ui input field  form-field">
@@ -410,6 +411,36 @@
 
             },
             async publish() {
+                this.rules={
+                    title:{
+                        rules:[
+                            {
+                                type:'inFun',
+                                rule:'required',
+                                msg:'标题不能为空！'
+                            },
+
+                            {
+                                type:'inFun',
+                                rule:'maxLength(40)',
+                                msg:'最大长度不能超过40个字符'
+                            },
+                        ] ,
+                        value:this.article.title,
+                        join:'and'
+                    },
+                    content:{
+                        rules:[
+                            {
+                                type:'inFun',
+                                rule:'required',
+                                msg:'标题不能为空！'
+                            }
+                        ] ,
+                        value:this.article.content,
+                        join:'or'
+                    }
+                }
                 this.valResult=valiForm.form(this.rules);
                 //如果是文本编辑器
                 // if (this.isEditor) {
@@ -447,7 +478,12 @@
             validateField(name){
                 this.rules[name].value=this.article[name]
                 let res=valiForm.valiField(this.rules[name])
-                this.$set(this.valResult,name,res)
+                if(res.success){
+                    this.$delete(this.valResult,name,res)
+                }else {
+                    this.$set(this.valResult,name,res)
+                }
+
             }
         },
         watch: {
@@ -482,6 +518,9 @@
         .switch-mark-down
             margin 0 0 1em
         .form
+            .valimsg
+                display block
+                color: #9f3a38;
             .form-field
                 width calc(100% - 50px)
             label
