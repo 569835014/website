@@ -5,10 +5,8 @@ class ArticleApi extends Api{
     super()
   }
   async saveArticleApi(params){
-    return await this.common({
-      url:'/article/save',
-      data:params
-    })
+      params.url='/article/save'
+    return await this.common(params)
   }
   async queryList(params){
     return await this.common({

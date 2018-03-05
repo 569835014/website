@@ -426,6 +426,11 @@
 
             },
             async publish() {
+
+                // 如果是文本编辑器
+                if (this.isEditor) {
+                    this.article.content = tinymce.activeEditor.getContent()
+                }
                 this.rules={
                     title:{
                         rules:[
@@ -458,11 +463,15 @@
                 }
                 this.valResult=valiForm.form(this.rules);
                 if(this.valResult.adopt){
-                    // 如果是文本编辑器
-                    if (this.isEditor) {
-                        this.article.content = tinymce.activeEditor.getContent()
+                    let data = await Article.saveArticleApi({data:{article: this.article},showNotice:true});
+                    console.info(data);
+                    if(data){
+                        setTimeout(()=>{
+                            this.$router.push({
+                                path:'/bolg'
+                            })
+                        },1400)
                     }
-                    let data = await Article.saveArticleApi({article: this.article});
                 }else{
 
                 }
