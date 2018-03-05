@@ -40,6 +40,9 @@
             <input type="checkbox" name="public" v-model="isEditor">
             <label>切换至富文本编辑器</label>
         </div>
+        <div class="error-msg content-error">
+            <div v-if="valResult.content" class="valimsg">{{valResult.content.msg}}</div>
+        </div>
         <Row :gutter="20">
             <Col :md="15">
             <div v-show="isEditor">
@@ -446,7 +449,7 @@
                             {
                                 type:'inFun',
                                 rule:'required',
-                                msg:'标题不能为空！'
+                                msg:'文章内容不能为空啊！'
                             }
                         ] ,
                         value:this.article.content,
@@ -454,12 +457,16 @@
                     }
                 }
                 this.valResult=valiForm.form(this.rules);
-                //如果是文本编辑器
-                // if (this.isEditor) {
-                //     this.article.content = tinymce.activeEditor.getContent()
-                // }
-                // let data = await Article.saveArticleApi({article: this.article})
-                // console.info(data)
+                if(this.valResult.adopt){
+                    // 如果是文本编辑器
+                    if (this.isEditor) {
+                        this.article.content = tinymce.activeEditor.getContent()
+                    }
+                    let data = await Article.saveArticleApi({article: this.article});
+                }else{
+
+                }
+
             },
             //新增标签
             async saveTag() {
@@ -526,21 +533,23 @@
         width 100%
 
     .publish
-
-        .switch-mark-down
-            margin 0 0 1em
-        .form
+        .error-msg
+            padding-left 61px
+            height 16px
+            margin-bottom 10px
             .valimsg
                 font-size 12px
                 display block
                 color: #9f3a38;
+         .content-error
+            padding-left 0px
+        .switch-mark-down
+            margin 0 0 1em
+        .form
             .form-item
                 .fields
                     margin-bottom 0px
-                .error-msg
-                    padding-left 61px
-                    height 16px
-                    margin-bottom 10px
+
             .form-field
                 width calc(100% - 50px)
             label
