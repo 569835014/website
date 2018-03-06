@@ -18,7 +18,7 @@
             </mavon-editor>
             <div class="" v-else v-html="article.content"></div>
         </section>
-        <comment v-if="article" :list="list"></comment>
+        <comment v-if="article" :list="list" @addComment="addComment"></comment>
     </div>
 
 </template>
@@ -69,6 +69,11 @@
                 console.info(this.article.tags)
                 // this.html= mark.mavonEditor.render(this.article.content)
             })
+        },
+        methods:{
+            addComment(item){
+                this.list.push(item)
+            }
         },
         computed: {},
         components:{

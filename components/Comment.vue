@@ -80,7 +80,8 @@
     export default {
         data(){
             return {
-                reply:''
+                reply:'',
+                index:5
             }
         },
         name: "comment",
@@ -94,10 +95,12 @@
         },
         methods:{
             addComment(){
+                console.info(this.$route.params.id)
+                this.index++
                 let newComment={
                     avatar:'http://www.semantic-ui.cn/images/avatar/small/jenny.jpg',
                     author:'Jenny Hess',
-                    text:this.reply
+                    text:this.reply||`第${this.index}条评论`
                 }
                 this.$emit('addComment',newComment)
             }

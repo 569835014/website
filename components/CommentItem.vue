@@ -11,11 +11,12 @@
             <div class="text">{{data.text}}</div>
             <div class="actions">
                 <a class="reply" v-if="reply">回复</a>
+
             </div>
 
         </div>
         <div class="comments" v-if="data.comment">
-            <comment-item  :data="data.comment"></comment-item>
+            <comment-item  :data="data.comment" :reply="false"></comment-item>
         </div>
     </div>
 </template>
