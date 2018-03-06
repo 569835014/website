@@ -21,7 +21,8 @@ class Article extends BaseSchema{
         default: 1
       },
       avatarUrl: String,
-      comments: [//评论
+        //评论
+      comments: [
         {
           type: ObjectId,
           ref: "Comment"

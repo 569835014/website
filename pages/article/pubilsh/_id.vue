@@ -18,7 +18,7 @@
             </mavon-editor>
             <div class="" v-else v-html="article.content"></div>
         </section>
-        <comment v-if="article"></comment>
+        <comment v-if="article" :list="list"></comment>
     </div>
 
 </template>
@@ -44,7 +44,24 @@
             return {
                 article: store.state.article,
                 html: "",
-                tagNames: tagNames
+                tagNames: tagNames,
+                list:[
+                    {
+                        avatar:'http://www.semantic-ui.cn/images/avatar/small/jenny.jpg',
+                        author:'Jenny Hess',
+                        text:"第一条评论",
+                        comment:{
+                            avatar:'http://www.semantic-ui.cn/images/avatar/small/jenny.jpg',
+                            author:'Jenny Hess',
+                            text:"第一条评论",
+                        }
+                    },
+                    {
+                        avatar:'http://www.semantic-ui.cn/images/avatar/small/jenny.jpg',
+                        author:'Jenny Hess',
+                        text:"第2条评论",
+                    }
+                ]
             }
         },
         mounted() {
