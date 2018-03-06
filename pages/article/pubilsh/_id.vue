@@ -1,29 +1,30 @@
 <template>
-    <div class="article-content">
+    <div class="article-content" >
         <h1 class="article-title">{{article.title}}</h1>
-        <mavon-editor
-                v-if="article.richType===1"
-                :ishljs="true"
-                language="cn"
-                :scrollStyle="true"
-                :toolbarsFlag="false"
-                :editable="false"
-                :subfield="false"
-                default_open="preview"
-                v-model="article.content"
-                :readmodel="true"
-        >
+        <section v-if="article">
+            <mavon-editor
+                    v-if="article.richType===1"
+                    :ishljs="true"
+                    language="cn"
+                    :scrollStyle="true"
+                    :toolbarsFlag="false"
+                    :editable="false"
+                    :subfield="false"
+                    default_open="preview"
+                    v-model="article.content"
+                    :readmodel="true"
+            >
 
-        </mavon-editor>
-        <div class="" v-else v-html="article.content"></div>
+            </mavon-editor>
+            <div class="" v-else v-html="article.content"></div>
+        </section>
+        <comment v-if="article"></comment>
     </div>
 
 </template>
 
 <script>
-    import marked from 'marked'
-    import mark from 'mavon-editor'
-    // import R from 'ramda'
+    import Comment from '~/components/Comment'
     const R=require('ramda')
     export default {
         layout: 'Blog',
@@ -52,7 +53,10 @@
                 // this.html= mark.mavonEditor.render(this.article.content)
             })
         },
-        computed: {}
+        computed: {},
+        components:{
+            Comment
+        }
     }
 </script>
 <style lang="stylus">

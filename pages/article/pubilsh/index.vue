@@ -60,7 +60,7 @@
                     </div>
                 </div>
                 <div class="content">
-                    <h4 class="ui sub header">活动</h4>
+                    <h4 class="ui sub header">分类</h4>
                     <div class="ui small feed">
                         <div>
                             <i class="icon wait"></i>
