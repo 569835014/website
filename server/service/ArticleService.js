@@ -6,8 +6,9 @@ class ArticleService extends Service {
   }
 
   async saveArticle (article, id) {
-    try {
       let data
+    try {
+
       if (id) data = await this.Model.findOne({id: id}).exec()
       else data = new this.Model(article)
       await data.save()

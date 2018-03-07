@@ -24,6 +24,7 @@
 </template>
 
 <script>
+    import {saveComment} from "~/assets/ajax/commentsAjax.js";
     import Comment from '~/components/Comment'
     const R=require('ramda')
     export default {
@@ -65,14 +66,20 @@
             }
         },
         mounted() {
+            this.id=this.$route.params.id;
+
             this.$nextTick(() => {
                 console.info(this.article.tags)
                 // this.html= mark.mavonEditor.render(this.article.content)
             })
         },
         methods:{
-            addComment(item){
-                this.list.push(item)
+            async addComment(item){
+                item.articleId=this.id;
+                item.avatar='http://www.semantic-ui.cn/images/avatar/small/jenny.jpg';
+                item.author='Jenny Hess'
+                let data=await saveComment(item);
+                this.list.push(data)
             }
         },
         computed: {},

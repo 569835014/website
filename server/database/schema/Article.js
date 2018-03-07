@@ -25,7 +25,7 @@ class Article extends BaseSchema{
       comments: [
         {
           type: ObjectId,
-          ref: "Comment"
+          ref: "Comments"
         }
       ],
       likesIP:[],
