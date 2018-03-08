@@ -34,7 +34,7 @@ class ArticleService extends Service {
     let data
     try {
       data=await this.Model.findOne({_id:id})
-          .populate('tags')
+          .populate('tags comments')
           .exec();
       if(!data) return this.abnormalResult(null,'文章不存在')
       return this.successResult(data, '查询成功')
@@ -65,6 +65,24 @@ class ArticleService extends Service {
           }
            return this.successResult({like:data.like}, msg)
       } catch (e) {
+          return this.errorResult(e)
+      }
+  }
+  async updateComment(id,commentId){
+
+      let data
+      try{
+          data=await this.Model.findOne({_id:id}).exec()
+          if(!data){
+              return  this.abnormalResult(null,'该文章不存在')
+          }
+
+          if(!data.comments.includes(commentId)){
+              data.comments.push(commentId)
+          }
+          data.save()
+          return this.successResult(data, '更新文章出成功')
+      }catch (e){
           return this.errorResult(e)
       }
   }
