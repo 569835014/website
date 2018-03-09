@@ -4,6 +4,8 @@ import * as CODE from '../../assets/common/states'
 class Service{
   constructor(){
     this.axios=axios;
+    this.name='';
+    this.cName=''
     this.result={
         state:"",
         data:{},
@@ -13,6 +15,60 @@ class Service{
   }
   init(model){
     this.Model=model
+  }
+  async queryList(paging,populate){
+      let data
+      try {
+          data = await this.Model.find({}).skip((paging.pageSize - 1) * paging.pageNum).limit(paging.pageNum)
+              .populate(populate)
+              .exec();
+          return this.successResult(data, '查询成功')
+      } catch (e) {
+          return this.errorResult(e)
+      };
+  }
+  async queryById(_id,populate){
+      let data
+      try {
+
+          data = await this.Model.findOne({_id:id})
+              .populate(populate)
+              .exec();
+          if(!data) return this.abnormalResult(null,`该${this.cName}不存在`);
+          return this.successResult(data, '查询成功')
+      } catch (e) {
+          return this.errorResult(e)
+      };
+  }
+  async deleteById(_id){
+    let data=await this.queryById(_id);
+    if(!data.data){
+      return data
+    }
+    try{
+      data.data.remove().exec();
+    }catch (e){
+      return this.errorResult(e)
+    }
+    return this.successResult(data,'删除成功')
+  }
+  async update(model){
+    let data;
+    try{
+      if(model._id){
+         data=await this.queryById(model._id);
+         if(!data.data){
+             return data
+         }
+          data=Object.assign(data.data,model)
+      }else{
+          data=new this.Model(model);
+      }
+      data.save();
+      return this.successResult(data,'更新成功')
+    }catch (e){
+      this.errorResult(e)
+    }
   }
   extend(param) {
 
