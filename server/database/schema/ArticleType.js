@@ -9,4 +9,5 @@ class ArticleType extends BaseSchema{
   }
 }
 
-new ArticleType().entity()
+const Model=new ArticleType().entity()
+export default Model

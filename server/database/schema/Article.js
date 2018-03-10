@@ -3,7 +3,14 @@ import mongoose from 'mongoose'
 const {Schema}=mongoose;
 const ObjectId=Schema.Types.ObjectId;
 class Article extends BaseSchema{
-  constructor (){
+
+  static created(){
+    if(!Article.Singleton){
+        Article.Singleton=new Article().entity()
+    }
+    return Article.Singleton
+  }
+    constructor (){
     const config= {
       title: String,//标题
       content: String,//内容
@@ -58,5 +65,8 @@ class Article extends BaseSchema{
     super(config,"Article")
   }
 }
+Article.Singleton=null;
 
-new Article().entity()
+const Model=Article.created();
+
+export default Model

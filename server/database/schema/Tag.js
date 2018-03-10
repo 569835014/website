@@ -15,5 +15,5 @@ class Tag extends BaseSchema{
     super(config,"Tag")
   }
 }
-
-new Tag().entity()
+const Model= new Tag().entity()
+export default Model

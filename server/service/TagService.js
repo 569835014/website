@@ -1,7 +1,8 @@
 import Service from './Service'
+import Model from '../database/schema/Tag.js'
 class TagService extends Service{
   constructor(){
-    super('Tag')
+      super('Tag',{name:'tag',cName:'标签',model:Model})
 
   }
 

@@ -22,5 +22,5 @@ class Comments extends BaseSchema{
     super(config,"Comments")
   }
 }
-
-new Comments().entity()
+const Model=new Comments().entity()
+export default Model

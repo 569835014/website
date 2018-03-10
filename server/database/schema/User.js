@@ -14,5 +14,5 @@ class User extends BaseSchema{
     super(config,"User")
   }
 }
-
-new User().entity()
+const Model=new User().entity()
+export default Model

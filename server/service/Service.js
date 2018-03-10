@@ -2,19 +2,17 @@ import axios from 'axios'
 import config from './config'
 import * as CODE from '../../assets/common/states'
 class Service{
-  constructor(){
+  constructor(option){
     this.axios=axios;
-    this.name='';
-    this.cName=''
+    this.name=option.name;
+    this.cName=option.cName
     this.result={
         state:"",
         data:{},
         message:"",
         success:true
     }
-  }
-  init(model){
-    this.Model=model
+    this.model=option.Model
   }
   async queryList(paging,populate){
       let data

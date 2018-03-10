@@ -1,8 +1,5 @@
 import { controller, get, post ,required} from '../decorator/router'
-import mongoose from 'mongoose'
-const Tag=mongoose.model('Tag')
 import Service from '../service/TagService'
-Service.init(Tag)
 @controller('/tag')
 export class TagContorller{
 

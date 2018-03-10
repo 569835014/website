@@ -1,8 +1,9 @@
 import Service from './Service'
 import ArticleService from './ArticleService'
+import Model from "../database/schema/Comments";
 class CommentsService extends Service{
     constructor () {
-        super('Article')
+        super('Comments',{name:'Comments',cName:'评论',model:Model})
     }
     async saveComment(comment){
         let data;
