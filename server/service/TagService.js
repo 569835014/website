@@ -1,13 +1,12 @@
 import Service from './Service'
-import Model from '../database/schema/Tag.js'
 class TagService extends Service{
   constructor(){
-      super('Tag',{name:'tag',cName:'标签',model:Model})
+      super({name:'Tag',cName:'标签'})
 
   }
 
   async queryTags({paging}){
-
+      console.info(this.Model)
       let data;
       try{
           data=await this.Model.find({}).skip((paging.pageSize-1)*paging.pageNum).limit(paging.pageNum).exec();

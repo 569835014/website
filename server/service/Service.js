@@ -1,6 +1,7 @@
 import axios from 'axios'
 import config from './config'
 import * as CODE from '../../assets/common/states'
+import mongoose from 'mongoose'
 class Service{
   constructor(option){
     this.axios=axios;
@@ -12,7 +13,7 @@ class Service{
         message:"",
         success:true
     }
-    this.model=option.Model
+    this.Model=mongoose.model(this.name)
   }
   async queryList(paging,populate){
       let data

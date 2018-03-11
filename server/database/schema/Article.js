@@ -67,6 +67,6 @@ class Article extends BaseSchema{
 }
 Article.Singleton=null;
 
-const Model=Article.created();
+const Model=new Article().entity();
 
 export default Model

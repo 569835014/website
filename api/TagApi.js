@@ -5,10 +5,8 @@ class TagApi extends Api{
         super()
     }
     async addTag(params){
-        return await this.common({
-            url:'/tag/add',
-            data:params
-        })
+        params.url='/tag/add';
+        return await this.common(params);
     }
     async queryTags(params){
 

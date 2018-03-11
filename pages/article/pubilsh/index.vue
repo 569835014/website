@@ -129,11 +129,12 @@
 <script>
     import Model from '../../../components/Model'
     import TagApi from '../../../api/TagApi'
+    import {addTag} from "../../../assets/ajax/tagAjax";
+    import {publilshArticle} from '../../../assets/ajax/articleAjax'
     import ArticleApi from '../../../api/ArticleApi'
+
     import ValiForm from '~/assets/common/util/valiForm.js'
     let valiForm=ValiForm.created();
-    const Service = new TagApi()
-    const Article = new ArticleApi()
     export default {
         name: 'index',
         layout: 'Blog',
@@ -463,7 +464,7 @@
                 }
                 this.valResult=valiForm.form(this.rules);
                 if(this.valResult.adopt){
-                    let data = await Article.saveArticleApi({data:{article: this.article},showNotice:true});
+                    let data = await publilshArticle({data:{article: this.article},showNotice:true});
                     console.info(data);
                     if(data){
                         setTimeout(()=>{
@@ -479,7 +480,7 @@
             },
             //新增标签
             async saveTag() {
-                let data = await Service.addTag(this.tag)
+                let data = await addTag(this.tag)
                 if (data) {
                     this.visible = false
                     this.tagList.push(data)

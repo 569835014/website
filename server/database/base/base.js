@@ -36,8 +36,12 @@ class BaseSchema{
   }
   statics(){}
   entity(){
-    console.info(this.name)
-   return mongoose.model(this.name,this.schema);
+    try{
+        return mongoose.model(this.name,this.schema);
+    }catch (e){
+
+    }
+
   }
 }
 export default BaseSchema

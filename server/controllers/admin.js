@@ -10,7 +10,6 @@ export class AdminContorller{
   }
   @get('add')
   async addUser(ctx,next){
-    console.info(1)
     let user=await User.findOne({
       account:'jtzm1237'
     })

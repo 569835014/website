@@ -2,7 +2,7 @@ import Service from './Service'
 import Model from '../database/schema/article.js'
 class ArticleService extends Service {
   constructor () {
-    super('Article',{name:'Article',cName:'文章',model:Model})
+    super({name:'Article',cName:'文章',model:Model})
   }
 
   async saveArticle (article, id) {

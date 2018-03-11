@@ -3,7 +3,7 @@ import ArticleService from './ArticleService'
 import Model from "../database/schema/Comments";
 class CommentsService extends Service{
     constructor () {
-        super('Comments',{name:'Comments',cName:'评论',model:Model})
+        super({name:'Comments',cName:'评论'})
     }
     async saveComment(comment){
         let data;

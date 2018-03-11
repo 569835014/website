@@ -8,4 +8,7 @@ const linkArticel=async (id)=>{
         showNotice:true
     })
 }
-export {linkArticel}
+const publilshArticle=async (params)=>{
+    return await Service.saveArticleApi(params)
+}
+export {linkArticel,publilshArticle}
