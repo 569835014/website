@@ -18,7 +18,7 @@
             </mavon-editor>
             <div class="" v-else v-html="article.content"></div>
         </section>
-        <comment v-if="article" :list="list" @addComment="addComment"></comment>
+        <comment v-if="article" :list="article.comments" @addComment="addComment"></comment>
     </div>
 
 </template>
@@ -75,12 +75,13 @@
         },
         methods:{
             async addComment(item){
+                console.info(item)
                 item.articleId=this.id;
                 item.avatar='http://www.semantic-ui.cn/images/avatar/small/jenny.jpg';
                 item.author='Jenny Hess'
                 let data=await saveComment(item);
                 this.list.push(data)
-            }
+            },
         },
         computed: {},
         components:{

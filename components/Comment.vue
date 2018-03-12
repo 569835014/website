@@ -1,7 +1,10 @@
 <template>
     <div class="ui threaded comments">
         <h3 class="ui dividing header">评论</h3>
-        <comment-item v-for="(item,index) in list" :key="index" :data="item"></comment-item>
+        <comment-item v-for="(item,index) in list"
+                      :key="index" :comments="item"
+                      @addChildComment="addChildComment"
+        ></comment-item>
         <!--<div class="comment" >-->
             <!--<a class="avatar">-->
                 <!--<img src="/images/avatar/small/matt.jpg">-->
@@ -91,17 +94,16 @@
                 default(){
                     return []
                 }
-            }
+            },
         },
         methods:{
             addComment(){
-                console.info(this.$route.params.id)
-                this.index++
                 let newComment={
-                    avatar:'http://www.semantic-ui.cn/images/avatar/small/jenny.jpg',
-                    author:'Jenny Hess',
-                    text:this.reply||`第${this.index}条评论`
+                    text:this.reply
                 }
+                this.$emit('addComment',newComment)
+            },
+            addChildComment(newComment){
                 this.$emit('addComment',newComment)
             }
         },
