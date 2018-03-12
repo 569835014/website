@@ -83,6 +83,7 @@ class ArticleService extends Service {
           data.save()
           return this.successResult(data, '更新文章出成功')
       }catch (e){
+          console.info(e)
           return this.errorResult(e)
       }
   }

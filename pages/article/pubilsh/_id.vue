@@ -78,9 +78,9 @@
                 console.info(item)
                 item.articleId=this.id;
                 item.avatar='http://www.semantic-ui.cn/images/avatar/small/jenny.jpg';
-                item.author='Jenny Hess'
+                item.author='Jenny Hess';
                 let data=await saveComment(item);
-                this.list.push(data)
+                this.article.comments.push(data)
             },
         },
         computed: {},

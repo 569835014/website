@@ -16,7 +16,6 @@ class CommentsService extends Service{
                     return  this.abnormalResult(null,articel.message)
                 }
                 data.save();
-                articel.save();
             }else{
                 data=await this.Model.findOne({_id: comment._id}).exec()
                 if(!data){
