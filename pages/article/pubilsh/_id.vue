@@ -26,7 +26,7 @@
 <script>
     import {saveComment} from "~/assets/ajax/commentsAjax.js";
     import Comment from '~/components/Comment'
-    const R=require('ramda')
+    import {mapActions,mapGetters} from 'vuex'
     export default {
         layout: 'Blog',
         head() {
@@ -80,10 +80,16 @@
                 item.avatar='http://www.semantic-ui.cn/images/avatar/small/jenny.jpg';
                 item.author='Jenny Hess';
                 let data=await saveComment(item);
-                this.article.comments.push(data)
+                this.article.comments.push(data);
+                this.updateArticle(this.article);
             },
+            ...mapActions([
+                'updateArticle'
+            ])
         },
-        computed: {},
+        computed: {
+            ...mapGetters['']
+        },
         components:{
             Comment
         }

@@ -1,4 +1,4 @@
-const userInfo = state => {
-    return state.user
+const article = state => {
+    return state.article
 };
-export default {userInfo}
+export default {article}

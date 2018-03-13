@@ -5,6 +5,10 @@ const queryArticleList = async function ({commit},{paging}) {
   commit(NAME.ARTICLE_LIST,await Service.queryList({paging})||[]);
 };
 const queryById = async function ({commit},{id}) {
+  console.info(arguments)
   commit(NAME.ARTICLE,await Service.queryById({id})||[]);
 };
-export {queryArticleList,queryById}
+const updateArticle=async function ({commit},article) {
+  commit(NAME.ARTICLE,article)
+}
+export {queryArticleList,queryById,updateArticle}
