@@ -88,6 +88,7 @@
             ])
         },
         computed: {
+
             ...mapGetters['']
         },
         components:{
