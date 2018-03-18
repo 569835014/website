@@ -80,16 +80,25 @@
                 item.avatar='http://www.semantic-ui.cn/images/avatar/small/jenny.jpg';
                 item.author='Jenny Hess';
                 let data=await saveComment(item);
-                this.article.comments.push(data);
-                this.updateArticle(this.article);
+                // this.article.comments.push(data);
+                let newArticle=Object.assign({},this.article);
+                newArticle.comments=this.article.comments.slice(0)
+                newArticle.comments.push(data);
+                this.updateArticle(newArticle);
             },
             ...mapActions([
                 'updateArticle'
             ])
         },
+        watch:{
+            uArticle(val){
+                this.article=val
+            }
+        },
         computed: {
-
-            ...mapGetters['']
+            ...mapGetters({
+                uArticle:'article'
+            })
         },
         components:{
             Comment
