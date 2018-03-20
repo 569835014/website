@@ -1,7 +1,7 @@
 import * as NAME from './constant'
 import axios from 'axios'
 import {queryTagList} from './action/tagsAction'
-import {queryArticleList,queryById,updateArticle} from './action/articleAction'
+import {queryArticleList,queryById,updateArticle,updateArticleCommit} from './action/articleAction'
 const saveUserInfo = function ({commit}, userInfo) {
     commit(NAME.USER_INFO, userInfo);
 };
@@ -9,7 +9,6 @@ const login = async function ({commit},loginInfo) {
     try{
 
         let res=await axios.post('/admin/login',loginInfo)
-        console.info(res)
         const {data}=res.data
         if(data.success) commit(NAME.USER_INFO,data.result)
     }catch (e){
@@ -18,4 +17,5 @@ const login = async function ({commit},loginInfo) {
         }
     }
 };
-export default {saveUserInfo,login,queryTagList,queryArticleList,queryById,updateArticle}
+
+export default {saveUserInfo,login,queryTagList,queryArticleList,queryById,updateArticle,updateArticleCommit}

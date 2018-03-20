@@ -13,7 +13,8 @@ const createStore=()=>{
             user:null,
             tags:[],
             articles:[],
-            article:{}
+            article:{},
+            comments:[]
         },
         getters,
         actions,

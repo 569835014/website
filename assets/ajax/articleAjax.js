@@ -8,7 +8,13 @@ const linkArticel=async (id)=>{
         showNotice:true
     })
 }
+const queryById=async (id)=>{
+    return await Service.queryById({
+        data:{id:id},
+        showNotice:true
+    })
+};
 const publilshArticle=async (params)=>{
     return await Service.saveArticleApi(params)
-}
-export {linkArticel,publilshArticle}
+};
+export {linkArticel,publilshArticle,queryById}

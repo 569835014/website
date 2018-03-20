@@ -59,13 +59,15 @@
                 if(!this.comments.comment){
                     this.$set(this.comments,'comment',[])
                 }
-                this.comments.comment.push({
+                let comments=Object.assign({},this.comments);
+                comments.comment=comments.comment.slice(0)
+                comments.comment.push({
                     text:this.commentsText,
                     meta:{
-                        updatedAt:''
+                        updatedAt:new Date()
                     }
                 })
-                this.$emit('addChildComment',this.comments);
+                this.$emit('addChildComment',comments);
                 this.commentsText=''
             }
         }

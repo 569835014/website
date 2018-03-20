@@ -18,7 +18,7 @@
             </mavon-editor>
             <div class="" v-else v-html="article.content"></div>
         </section>
-        <comment v-if="article" :list="article.comments" @addComment="addComment"></comment>
+        <comment v-if="article" :list="comments" @addComment="addComment"></comment>
     </div>
 
 </template>
@@ -32,18 +32,19 @@
         head() {
 
             return {
-                title: this.article.title,
+                title: this.title,
                 meta: [{
-                    "http-equiv": "keywords", "content": this.article.keyWords||this.tagNames.join(',')
+                    "http-equiv": "keywords", "content": this.keyWords||this.tagNames.join(',')
                 }]
             }
 
         },
         async asyncData({store, params}) {
-            await store.dispatch('queryById', {id: params.id})
+            await store.dispatch('queryById',  params.id)
             let tagNames =[]
             return {
-                article: store.state.article,
+                title:store.state.article.title,
+                keyWords:store.state.article.keyWords,
                 html: "",
                 tagNames: tagNames,
                 list:[
@@ -69,36 +70,41 @@
             this.id=this.$route.params.id;
 
             this.$nextTick(() => {
-                console.info(this.article.tags)
                 // this.html= mark.mavonEditor.render(this.article.content)
             })
         },
         methods:{
             async addComment(item){
-                console.info(item)
+
                 item.articleId=this.id;
                 item.avatar='http://www.semantic-ui.cn/images/avatar/small/jenny.jpg';
                 item.author='Jenny Hess';
                 let data=await saveComment(item);
-                // this.article.comments.push(data);
-                let newArticle=Object.assign({},this.article);
-                newArticle.comments=this.article.comments.slice(0)
-                newArticle.comments.push(data);
-                this.updateArticle(newArticle);
+                let arr=JSON.parse(JSON.stringify(this.comments));
+                console.info(arr);
+                let index=this.findIndex(arr,data);
+                if(index>-1){
+                    arr[index]=data
+
+                }else{
+                    arr.push(data)
+                }
+                this.updateArticleCommit(arr);
+            },
+            findIndex(arr,comment){
+               return arr.findIndex((item)=>{
+                    return item._id===comment._id
+                })
             },
             ...mapActions([
-                'updateArticle'
+                'updateArticleCommit'
             ])
         },
-        watch:{
-            uArticle(val){
-                this.article=val
-            }
-        },
         computed: {
-            ...mapGetters({
-                uArticle:'article'
-            })
+
+            ...mapGetters(
+                ['article','comments']
+            )
         },
         components:{
             Comment
