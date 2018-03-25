@@ -74,7 +74,9 @@ export const del = path => router({
   path: path
 })
 const decorate=(args,middleware)=>{
+
   let [target,key,descriptor]=args;
+    console.info(descriptor)
   target[key]=isArray(target[key])
   target[key].unshift(middleware)
   return descriptor
