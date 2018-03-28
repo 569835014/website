@@ -1,21 +1,35 @@
 <template>
-    <div class="login">
-        <div>
-            <img src="~/static/img/login.png" alt="">
-        </div>
-        <div class="">
-            <button class="ui facebook button"><i class="github icon"></i> GitHub Login </button>
-            <button class="ui google plus button"><i class="google plus icon"></i> Google Login </button>
-            <div class="ui horizontal divider">Or </div>
-            <div class="ui left icon input">
-                <input type="text" placeholder="搜索用户……">
-                <i class="users icon"></i>
+    <div class="login" flex="main:center cross:center">
+        <div flex="dir:left">
+            <div  >
+                <img src="~/static/img/login.png" alt="">
             </div>
-            <div class="zm-input" flex="dir:left">
-                <span></span>
-                <input type="text" placeholder="Email">
+            <div class="form">
+                <div  flex="main:justify">
+                    <button class="ui facebook button"><i class="github icon"></i> GitHub Login </button>
+                    <button class="ui google plus button"><i class="google plus icon"></i> Google Login </button>
+                </div>
+
+                <div class="ui horizontal divider">Or </div>
+                <div class="zm-input" flex="dir:left">
+                    <span flex="main:center cross:center">
+                        <i class="user icon"></i>
+                    </span>
+                    <input type="text" placeholder="Email">
+                </div>
+                <div class="zm-input" flex="dir:left">
+                    <span flex="main:center cross:center">
+                          <i class="privacy icon"></i>
+                    </span>
+                    <input type="password" placeholder="Email">
+                </div>
+                <div class="submit">
+                    <button class="positive ui button">LOGIN</button>
+                </div>
+
             </div>
         </div>
+
     </div>
 </template>
 
@@ -29,21 +43,40 @@
     .login
         width 100vw;
         height 100vh;
+        overflow hidden
+        .form
+            width 348px
+            margin-left 185px
+            .horizontal
+                margin 43px 0
+
         .zm-input
-            margin-top 20px
             border 1px solid #d7d7d7
             border-radius: 5px
             width:348px;
             height 54px
+            margin-bottom 20px
+            .icon
+                font-size 16px
+                width auto
+                height auto
             span
                 width 52px
                 height 52px
                 border-right 1px solid #d7d7d7
             input
-                width (346 - 52)px
+                width (345 - 52)px
                 padding 20px
                 height 52px
                 border none
-                outline none
+                outline none;
+                font-size 14px
+        .submit
+            .positive
+                margin-top 20px
+                width:348px;
+                padding 0;
+                height 54px
+
 
 </style>
