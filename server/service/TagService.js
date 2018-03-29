@@ -6,7 +6,6 @@ class TagService extends Service{
   }
 
   async queryTags({paging}){
-      console.info(this.Model)
       let data;
       try{
           data=await this.Model.find({}).skip((paging.pageSize-1)*paging.pageNum).limit(paging.pageNum).exec();

@@ -128,11 +128,8 @@
 
 <script>
     import Model from '../../../components/Model'
-    import TagApi from '../../../api/TagApi'
     import {addTag} from "../../../assets/ajax/tagAjax";
     import {publilshArticle} from '../../../assets/ajax/articleAjax'
-    import ArticleApi from '../../../api/ArticleApi'
-
     import ValiForm from '~/assets/common/util/valiForm.js'
     let valiForm=ValiForm.created();
     export default {

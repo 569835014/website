@@ -15,16 +15,16 @@
                     <span flex="main:center cross:center">
                         <i class="user icon"></i>
                     </span>
-                    <input type="text" placeholder="Email">
+                    <input type="text" placeholder="Email" v-model="account">
                 </div>
                 <div class="zm-input" flex="dir:left">
                     <span flex="main:center cross:center">
                           <i class="privacy icon"></i>
                     </span>
-                    <input type="password" placeholder="Email">
+                    <input type="password" placeholder="Email" v-model="password">
                 </div>
                 <div class="submit">
-                    <button class="positive ui button">LOGIN</button>
+                    <button class="positive ui button" @click="login">LOGIN</button>
                 </div>
 
             </div>
@@ -34,8 +34,26 @@
 </template>
 
 <script>
+    import UserApi from '~/api/UserApi.js'
+    const userApi=new UserApi()
     export default {
-        name: "index"
+        name: "index",
+        data(){
+            return {
+                account:'',
+                password:''
+            }
+        },
+        methods:{
+            async login(){
+                let data=await userApi.login({
+                    data:{
+                        account:this.account,
+                        password:this.password
+                    }
+                })
+            }
+        }
     }
 </script>
 

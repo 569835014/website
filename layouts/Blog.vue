@@ -1,49 +1,7 @@
 <template>
   <section id="app">
-      <!--<article class="app-header">-->
-          <!--<header class="ui container">-->
-              <!--<a href=""></a>-->
-              <!--<nav role="navigation" class="app-nav">-->
-                  <!--<ul class="nav-lists" flex="dir:left">-->
-                      <!--<li class="nav-item nav-menu">-->
-                          <!--<ul flex="dir:left">-->
-                              <!--<li>-->
-                                  <!--<a href="">-->
-                                      <!--首页-->
-                                  <!--</a>-->
-                              <!--</li>-->
-                              <!--<li>-->
-                                  <!--<a href="">-->
-                                      <!--画册-->
-                                  <!--</a>-->
-                              <!--</li>-->
-                              <!--<li>-->
-                                  <!--<a href="">-->
-                                      <!--随笔-->
-                                  <!--</a>-->
-                              <!--</li>-->
-                              <!--<li>-->
-                                  <!--<a href="">-->
-                                      <!--首页-->
-                                  <!--</a>-->
-                              <!--</li>-->
-                          <!--</ul>-->
-                      <!--</li>-->
-                      <!--<li class="nav-item search">-->
-                          <!--<form action="" class="ui form">-->
-                              <!--<div class="ui icon input">-->
-                                  <!--<input type="text" placeholder="搜索文章">-->
-                                  <!--<i class="search icon"></i>-->
-                              <!--</div>-->
-                          <!--</form>-->
-                      <!--</li>-->
-                  <!--</ul>-->
-              <!--</nav>-->
-          <!--</header>-->
-      <!--</article>-->
         <blog-header></blog-header>
       <main class="ui container">
-
           <nuxt></nuxt>
       </main>
 

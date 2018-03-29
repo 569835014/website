@@ -19,9 +19,7 @@ module.exports = {
             src: '~plugins/iview.js', ssr: true
 
         },
-        {
-            src: '~plugins/flex.js', ssr: false
-        },
+
         {
             src: '~plugins/jquery', ssr: false
         },
@@ -38,7 +36,7 @@ module.exports = {
     /*
     ** Global CSS
     */
-    css: ['~static/css/main.css', '~static/semantic/lib/semantic.min.css'],
+    css: ['~static/css/main.css', '~static/semantic/lib/semantic.min.css','flex.css'],
     /*
     ** Customize the progress-bar color
     */
