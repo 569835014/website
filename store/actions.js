@@ -1,7 +1,7 @@
 import * as NAME from './constant'
 import axios from 'axios'
 import {queryTagList} from './action/tagsAction'
-import {queryArticleList,queryById,updateArticle,updateArticleCommit} from './action/articleAction'
+import * as articleAction from './action/articleAction'
 const saveUserInfo = function ({commit}, userInfo) {
     commit(NAME.USER_INFO, userInfo);
 };
@@ -18,4 +18,9 @@ const login = async function ({commit},loginInfo) {
     }
 };
 
-export default {saveUserInfo,login,queryTagList,queryArticleList,queryById,updateArticle,updateArticleCommit}
+export default {
+    saveUserInfo,
+    login,
+    queryTagList,
+    ...articleAction
+}

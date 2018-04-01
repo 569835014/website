@@ -39,16 +39,6 @@ class User extends BaseSchema {
         this.schema.virtual('isLocked').get(function () {
             return !!(this.lockUtil&&this.lockUtil>Date.now())
         })
-        //操作数据库前做的操作
-        this.schema.pre('save',function (next) {
-            if(this.isNew){//如果是现在更新创建和更新
-                this.meta.createdAt= this.meta.updatedAt=Date.now();
-            }else{//只更新更新时间
-                this.meta.updatedAt=Date.now()
-            }
-            next();
-        });
-
         this.schema.pre('save',function (next) {
             let user=this;
             if(!user.isModified('password')) return next()

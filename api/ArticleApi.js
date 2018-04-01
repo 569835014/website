@@ -9,10 +9,8 @@ class ArticleApi extends Api{
     return await this.common(params)
   }
   async queryList(params){
-    return await this.common({
-      url:'/article/list',
-      data:params
-    })
+    params.url='/article/list'
+    return await this.common(params)
   }
   async queryById(params){
     params.url='/article/findOne'

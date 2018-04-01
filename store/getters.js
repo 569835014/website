@@ -4,4 +4,7 @@ const article = state => {
 const comments = state => {
     return state.comments
 };
-export default {comments,article}
+const articles = state => {
+    return state.articles
+}
+export default {comments, article,articles}
