@@ -135,6 +135,7 @@
     export default {
         name: 'index',
         layout: 'Blog',
+        middleware:'auth',
         head: {
             script: [
                 {
