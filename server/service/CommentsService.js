@@ -1,6 +1,5 @@
 import Service from './Service'
 import ArticleService from './ArticleService'
-import Model from "../database/schema/Comments";
 class CommentsService extends Service{
     constructor () {
         super({name:'Comments',cName:'评论'})

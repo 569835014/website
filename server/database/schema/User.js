@@ -53,8 +53,10 @@ class User extends BaseSchema {
         });
         this.schema.methods={
             comparePassword:function (_password,password) {
+
                 return new Promise((resolve,reject)=>{
                     bcryptjs.compare(_password,password,function (err,isMatch) {
+                        console.info(password)
                         if(!err) resolve(isMatch);
                         else reject(err)
                     })

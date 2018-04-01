@@ -7,5 +7,9 @@ class UserApi extends Api{
         params.url='/admin/login'
         return await this.common(params);
     }
+    async register(params){
+        params.url='/admin/register'
+        return await this.common(params);
+    }
 }
 export default UserApi

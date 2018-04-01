@@ -4,16 +4,18 @@ import * as CODE from '../../assets/common/states'
 import mongoose from 'mongoose'
 class Service{
   constructor(option){
-    this.axios=axios;
-    this.name=option.name;
-    this.cName=option.cName
-    this.result={
-        state:"",
-        data:{},
-        message:"",
-        success:true
+    if(option){
+        this.axios=axios;
+        this.name=option.name;
+        this.cName=option.cName
+        this.result={
+            state:"",
+            data:{},
+            message:"",
+            success:true
+        }
+        this.Model=mongoose.model(this.name)
     }
-    this.Model=mongoose.model(this.name)
   }
   async queryList(paging,populate){
       let data

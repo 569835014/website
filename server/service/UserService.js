@@ -7,9 +7,9 @@ class UserService extends Service{
         let data;
         try{
             data=await this.Model.findOne({account:account});
-            console.info(data)
+
             if(data){
-                let res=await this.schema.comparePassword(password,data.password);
+                let res=await data.comparePassword(password,data.password||'');
                 console.info(res);
                 if(res){
 
@@ -23,6 +23,30 @@ class UserService extends Service{
                 return this.abnormalResult(null,`密码错误`);
             }
             return this.abnormalResult(null,`该${this.cName}不存在`);
+        }catch (e){
+            return this.errorResult(e)
+        }
+    }
+    async register(params,ctx){
+        let {account,password,code}=params;
+        let sessionCode=ctx.session.captcha;
+        let data;
+        try{
+            if(code!==sessionCode){
+                return this.abnormalResult(null,`验证码不正确`);
+            }
+            data=await this.Model.findOne({account:account});
+            if(data){
+                return this.abnormalResult(null,`账号已存在`);
+            }
+            data=new this.Model({
+                account:account,
+                password:password
+            })
+            data.save();
+            delete data.password
+            ctx.session.user=data
+            return this.successResult(data,'注册成功')
         }catch (e){
             return this.errorResult(e)
         }
