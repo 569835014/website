@@ -7,4 +7,7 @@ const comments = state => {
 const articles = state => {
     return state.articles
 }
-export default {comments, article,articles}
+const user = state => {
+    return state.user
+}
+export default {comments, article,articles,user}

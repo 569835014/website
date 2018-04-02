@@ -6,7 +6,6 @@ module.exports = {
         net: 'empty',
         tls: 'empty'
     }
-    console.info(config)
     return config
   }
 }

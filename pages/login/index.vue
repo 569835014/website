@@ -37,7 +37,7 @@
                     </div>
                 </div>
                 <div class="submit">
-                    <button class="positive ui button" @click="login" v-if="isLogin">{{btnText}}</button>
+                    <button class="positive ui button" @click="submitBtn" v-if="isLogin">{{btnText}}</button>
                     <button class="positive ui button" @click="register" v-else>{{btnText}}</button>
                 </div>
                 <div class="tips" @click="isLogin=!isLogin" v-if="isLogin">注册</div>
@@ -52,6 +52,7 @@
     import CommonApi from '~/api/CommonApi.js'
     const userApi=new UserApi()
     const commonApi=new CommonApi();
+    import {mapActions,mapGetters} from 'vuex'
     export default {
         name: "index",
         data(){
@@ -76,14 +77,23 @@
                 });
                 this.captcha=data?data.data:''
             },
-            async login(){
-                let data=await userApi.login({
-                    data:{
-                        account:this.account,
-                        password:this.password
-                    }
+            async submitBtn(){
+                await this.login({
+                    account:this.account,
+                    password:this.password
+                })
+                this.$router.push({
+                    path:'/article/pubilsh'
                 })
             },
+            // async login(){
+            //     let data=await userApi.login({
+            //         data:{
+            //             account:this.account,
+            //             password:this.password
+            //         }
+            //     })
+            // },
             async register(){
                 let data=await userApi.register({
                     data:{
@@ -93,7 +103,10 @@
                     },
                     showNotice:true
                 })
-            }
+            },
+            ...mapActions([
+                'login'
+            ])
         },
         watch:{
             isLogin(newVal){
@@ -103,6 +116,11 @@
                     this.btnText='注册'
                 }
             }
+        },
+        computed:{
+            ...mapGetters([
+                'user'
+            ])
         }
     }
 </script>
