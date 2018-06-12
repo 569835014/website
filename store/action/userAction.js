@@ -3,13 +3,12 @@ import Api from '../../api/UserApi'
 
 const Service=new Api();
 const login=async ({commit},loginInfo)=>{
-    console.info(loginInfo)
+    // console.info(loginInfo)
     try{
         let res=await Service.login({
             data:loginInfo,
             showNotice:true
         })
-        console.info(res)
         if(res) commit(NAME.SET_USER,res)
     }catch (e){
         if(e.response.status===401){

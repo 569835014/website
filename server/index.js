@@ -5,7 +5,7 @@ import R from 'ramda'
 var cors = require('koa2-cors');
 import {resolve} from 'path'
 
-const MIDDLEWARES = ['database', 'common', 'router']
+const MIDDLEWARES = ['database', 'common', 'router','static']
 let config = require('../nuxt.config.js')
 config.dev = !(process.env === 'production')
 const host = process.env.HOST || '127.0.0.1'
@@ -20,7 +20,7 @@ class Server {
                 if (ctx.url === '/test') {
                     return "*"; // 允许来自所有域名请求
                 }
-                return 'http://localhost:8080';
+                return '*';
             },
             exposeHeaders: ['WWW-Authenticate', 'Server-Authorization'],
             maxAge: 5,

@@ -7,7 +7,6 @@ const saveUserInfo = function ({commit}, userInfo) {
 };
 export default {
     nuxtServerInit({commit},{req}){
-        console.info(req.session)
         if(req.session&&req.session.user){
             const {account}=req.session.user
             const user={

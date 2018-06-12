@@ -81,7 +81,7 @@
                 item.author='Jenny Hess';
                 let data=await saveComment(item);
                 let arr=JSON.parse(JSON.stringify(this.comments));
-                console.info(arr);
+                // console.info(arr);
                 let index=this.findIndex(arr,data);
                 if(index>-1){
                     arr[index]=data

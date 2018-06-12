@@ -18,7 +18,6 @@ class UserService extends Service{
                         account:account,
                         ...data
                     }
-                    console.info(ctx.session)
                     return this.successResult(data,'操作成功')
                 }
                 return this.abnormalResult(null,`密码错误`);

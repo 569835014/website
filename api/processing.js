@@ -1,5 +1,5 @@
 import {Notice} from 'iview'
-console.info(Notice)
+
 import * as CODE from '../assets/common/states'
 class Processing{
   constructor (){

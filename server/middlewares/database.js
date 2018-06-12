@@ -7,7 +7,6 @@ import fs from 'fs'
 import {resolve} from 'path'
 import R from 'ramda'
 const models=resolve(__dirname,'../database/schema')
-console.info(models)
 //同步读取所有的models文件,并通过正则筛选出js文件
 fs.readdirSync(models)
     .filter(file=>~file.search(/^[^\.].*js$/))

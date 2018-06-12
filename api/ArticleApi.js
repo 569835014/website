@@ -14,10 +14,10 @@ class ArticleApi extends Api{
   }
   async queryById(params){
     params.url='/article/findOne'
-    return await this.common(params)
+    return await this.common(params)1
   }
   async linkArticle(params){
-      params.url='/article/link'
+      params.url='/article/link'2
       return await this.common(params)
   }
 }

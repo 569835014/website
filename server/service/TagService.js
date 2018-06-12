@@ -18,7 +18,6 @@ class TagService extends Service{
       let data;
       try{
           data=await this.Model.findOne({name:name}).exec();
-          console.info(data);
           if(data){
               return this.abnormalResult(null,'该标签已存在')
           }

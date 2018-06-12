@@ -463,7 +463,6 @@
                 this.valResult=valiForm.form(this.rules);
                 if(this.valResult.adopt){
                     let data = await publilshArticle({data:{article: this.article},showNotice:true});
-                    console.info(data);
                     if(data){
                         setTimeout(()=>{
                             this.$router.push({
